@@ -3,7 +3,7 @@ import TextView from "./framework/core/TextView";
 import Button from "./framework/core/Button";
 import Chungwa from "./framework/chungwa/index";
 import TextInput from "./framework/core/TextInput";
-import UnorderedList from "./Core/UnorderedList";
+import UnorderedList from "./framework/Core/UnorderedList";
 import ListItem from "./framework/core/ListItem";
 
 class MyComponent extends Chungwa {

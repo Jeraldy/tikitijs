@@ -12,7 +12,6 @@ export default class Chungwa {
         var update = this.context.render()
         await this.node.parentElement.replaceChild(update, this.node)
         this.node = update;
-        update.focus()
         this.componentDidUpdate()
         return this.state
     }
