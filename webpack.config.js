@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require("webpack");
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/index.js',
     mode: "development",
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -12,9 +12,9 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            swal: "sweetalert"
+            // $: "jquery",
+            // jQuery: "jquery",
+            //swal: "sweetalert"
         })
     ],
     module: {
