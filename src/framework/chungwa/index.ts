@@ -2,7 +2,10 @@ export default class Chungwa {
     state: any;
     node: any;
     context: any;
-    constructor() {
+    props: any;
+
+    constructor(props?: any) {
+        this.props = props;
         this.componentDidMount()
     }
 
@@ -10,10 +13,22 @@ export default class Chungwa {
         this.componetWillUpdate()
         this.state = { ...this.state, ...NewState }
         var update = this.context.render()
-        await this.node.parentElement.replaceChild(update, this.node)
+        this.node.parentElement.replaceChild(update, this.node)
         this.node = update;
         this.componentDidUpdate()
+        this.domEventsListener()
         return this.state
+    }
+
+    private domEventsListener() {
+        document.addEventListener("keyup", (e) => {
+            //@ts-ignore
+            var target = document.querySelectorAll('[ref="' + e.target.getAttribute("ref") + '"]')[0]
+            //@ts-ignore
+            target.focus()
+            //@ts-ignore
+            target.selectionStart = target.selectionEnd = target.value.length;
+        })
     }
 
     connectedCallBack(_this: any) {

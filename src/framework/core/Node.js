@@ -1,6 +1,6 @@
 export default (props = {}, tag) => {
     var node = document.createElement(tag);
-
+    
     if (props.children) {
         props.children.forEach(child => {
             if (child !== null) {

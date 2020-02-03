@@ -7,7 +7,3 @@ export const setValue = (params = {}) => {
     document.getElementById(id).value = value;
 }
 
-export const switcher = (params={}) =>{
-    var { parent, child} = {...params};
-   
-}
