@@ -1,30 +1,47 @@
 import Div from "../core/Div";
-import Chungwa from "../chungwa/index";
+import Tikiti from "../tikiti/index";
 import Link from "../core/Link";
 import TextView from "../core/TextView";
 import TopBar from "./TopBar";
 import "./index.css";
+import TextInput from "../core/TextInput";
 
-export default class Scaffold extends Chungwa {
+export default class Scaffold extends Tikiti {
     width: string;
     constructor() {
         super();
-        this.width = "50px"
+        this.width = "0px"
+        this.state = {
+            name: "",
+            width: "0px",
+        }
+        this.handleChange = this.handleChange.bind(this);
+
         return this.connectedCallBack(this);
     }
 
+    handleChange(e: Event) {
+        this.setState({
+            //@ts-ignore
+            name: e.target.value
+        })
+        console.log(this.state.name)
+    }
+
     toggleNav() {
-        document.getElementById("side-nav-id")
-            .style.width = this.width == "50px" ? "250px" : "50px";
-        document.getElementById("main-id")
-            .style.marginLeft = this.width == "50px" ? "250px" : "50px";
-        this.width = this.width == "50px" ? "250px" : "50px";
+        this.setState({
+            width: this.state.width == "0px" ? "250px" : "0px"
+        })
+        console.log(this.state.width)
     }
 
     sideNav() {
         return Div({
-            id: "side-nav-id",
+            //id: "side-nav-id",
             class: "sidenav",
+            style: {
+                width: this.state.width
+            },
             children: [
                 Link({
                     href: "javascript:void(0)",
@@ -42,14 +59,26 @@ export default class Scaffold extends Chungwa {
 
     mainPage() {
         return Div({
-            id: "main-id",
+            //id: "main-id",
             style: {
-                marginLeft: "50px",
                 backgroundColor: "#EDECEC",
-                height:"100vh"
+                height: "100vh",
+                marginLeft: this.state.width
             },
             children: [
-                TextView(" MAIN PAGE "),
+                new TopBar({
+                    toggleNav: () => this.toggleNav()
+                }),
+                this.state.width == "0px" ?
+                    TextView(" MAIN PAGE ")
+                    :
+                    TextInput({
+                        onchange: this.handleChange,
+                        value: this.state.name,
+                        // style:{
+                        //     width: this.state.width
+                        // }
+                    })
             ]
         })
     }
@@ -57,7 +86,6 @@ export default class Scaffold extends Chungwa {
     render() {
         return Div({
             children: [
-                new TopBar(),
                 this.sideNav(),
                 this.mainPage()
             ]

@@ -1,13 +1,10 @@
 import Nav from "../core/Nav";
-
-interface Params {
-    //topBarEndActions?: TopBarEndActions,
-   // topBarStartActions?: TopBarStartActions
-}
+import TextView from "../core/TextView";
+import Button from "../core/Button";
 
 export default class TopBar {
     node: any;
-    constructor(params?: Params) {
+    constructor(params?: any) {
         this.node = Nav({
             id: "topBar",
             style: {
@@ -15,7 +12,15 @@ export default class TopBar {
                 boxShadow: "0 3px 3px -3px rgba(0,0,0,.2)",
                 color: "black",
                 height:"50px"
-            }
+            },
+            children:[
+                Button({
+                    onclick: () => params.toggleNav(),
+                    children:[
+                        TextView("Open")
+                    ]
+                })
+            ]
         })
         return this.node;
     }

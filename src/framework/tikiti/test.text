@@ -1,0 +1,64 @@
+      for (var i = 0; i < newTree.tree.length; i++) {
+
+            for (var attr in this.domTree[i]) {
+
+                // if (attr == "child") {
+                //     //@ts-ignore
+                //     var old_tree = this.domTree[i][attr].children
+                //     var new_tree = newTree.tree[i][attr].children
+                //     var old_tree_names = []
+                //     var new_tree_names = []
+                //     for (var j = 0; j < old_tree.length; j++) {
+                //         //@ts-ignore
+                //         old_tree_names.push(old_tree[j].nodeName)
+                //     }
+                //     for (var k = 0; k < new_tree.length; k++) {
+                //         //@ts-ignore
+                //         new_tree_names.push(new_tree[k].nodeName)
+                //     }
+
+                //     if (new_tree.length > old_tree.length) {
+                //         // Node was added to the tree
+                //         for (var l = 0; l < new_tree.length; l++) {
+                //             if (!old_tree_names.includes(new_tree_names[l])) {
+                //                 //@ts-ignore
+                //                 this.domTree[i][attr].appendChild(newTree.tree[i][attr].children[l])
+                //             }
+                //         }
+                //     } else if (new_tree.length < old_tree.length) {
+                //         // Node was removed to the tree
+                //         for (var m = 0; m < old_tree.length; m++) {
+                //             if (!new_tree_names.includes(old_tree_names[m])) {
+                //                 //@ts-ignore
+                //                 this.domTree[i][attr].removeChild(this.domTree[i][attr].children[m])
+                //             }
+                //         }
+                //     }
+                //     else {
+                //         for (var m = 0; m < old_tree.length; m++) {
+                //             if (!new_tree_names.includes(old_tree_names[m])) {
+                //                 //@ts-ignore
+                //                 this.domTree[i][attr].replaceChild(newTree.tree[i][attr].children[m], this.domTree[i][attr].children[m])
+                //             }
+                //             if (!old_tree_names.includes(new_tree_names[m])) {
+                //                 //@ts-ignore
+                //                 this.domTree[i][attr].replaceChild(newTree.tree[i][attr].children[m], this.domTree[i][attr].children[m])
+                //             }
+                //         }
+                //     }
+                // }
+
+                // Update Other Props
+                if (attr != "child") {
+                    //@ts-ignore	
+                    if (this.domTree[i][attr] != newTree.tree[i][attr]) {
+                        //@ts-ignore
+                        this.domTree[i][attr] = newTree.tree[i][attr]
+                        //@ts-ignore
+                        this.domTree[i].child.setAttribute(attr, newTree.tree[i][attr])
+                    }
+                }
+
+            }
+
+        }
