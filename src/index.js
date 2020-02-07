@@ -8,7 +8,8 @@ class App extends Tikiti {
   constructor(props) {
     super(props)
     this.state = {
-      page: this.currentPage(3)
+      page: this.currentPage(3),
+      color: "blue"
     }
     return this.connectedCallBack(this);
   }
@@ -20,7 +21,7 @@ class App extends Tikiti {
           children: [
             TextView("Page 1"),
             Div({
-              children:[
+              children: [
                 TextView("Some content")
               ]
             })
@@ -33,7 +34,13 @@ class App extends Tikiti {
           ]
         })
       case 3:
-        return new Scaffold()
+        // return Button({
+        //   onclick: () => this.switchPage(2),
+        //   children: [
+        //     TextView("switch to Page 2")
+        //   ]
+        // })
+           return new Scaffold()
       default:
         break;
     }
@@ -70,11 +77,16 @@ class App extends Tikiti {
             })
           ]
         }),
-        this.state.page
+        Div({
+          id: "page",
+          children: [
+            this.state.page
+          ]
+        })
       ]
     })
   }
 }
 
 
-document.body.appendChild(new App());
+document.getElementById("root").appendChild(new App());

@@ -1,43 +1,38 @@
-import morphdom from '../reconcile/index';
+import { DiffDOM } from "../../../node_modules/diff-dom/src/index";
 
 export default class Tikiti {
+    state: any;
     private node: any;
     private context: any;
-    private update: any;
-    private domTree: {}[] = [];
     props: any;
-    state: any;
+    private domTree: Array<{}>;
+    private domTreeNodeNames: Array<string>;
+    private domTreeNodeList: Array<any>;
 
     constructor(props?: any) {
         this.props = props;
+        this.domTree = []
+        this.domTreeNodeNames = []
+        this.domTreeNodeList = []
         this.componentDidMount()
     }
 
     async setState(NewState: {}) {
         this.componetWillUpdate()
         this.state = { ...this.state, ...NewState }
-        this.update = this.context.render()
-        this.updateDom()
+        var update = this.context.render()
+        this.updateDomTree(update)
         this.componentDidUpdate()
         return this.state
     }
 
-    private updateDom() {
-        var newTree = this.generateDomTree(this.update)
-        for (var i = 0; i < newTree.tree.length; i++) {
-            for (var attr in this.domTree[i]) {
-                if (attr != "child") {
-                    //@ts-ignore	
-                    if (this.domTree[i][attr] != newTree.tree[i][attr]) {
-                        //@ts-ignore
-                        this.domTree[i][attr] = newTree.tree[i][attr]
-                        //@ts-ignore
-                        this.domTree[i].child.setAttribute(attr, newTree.tree[i][attr])
-                    }
-                }
-            }
-        }
-        morphdom(this.node, this.update);
+    private updateDomTree(update: any) {
+       // var newTree = this.generateDomTree(update)
+        var dd = new DiffDOM();
+        var diff = dd.diff(this.node, update);
+        dd.apply(this.node, diff);
+        console.log(diff)
+        console.log("=====================")
     }
 
     private generateDomTree(dom: any): any {
@@ -84,9 +79,10 @@ export default class Tikiti {
 
     private initDomTree() {
         var tree = this.generateDomTree(this.node)
+        this.domTreeNodeNames = tree.names;
         this.domTree = tree.tree;
+        this.domTreeNodeList = tree.nodeList;
     }
-
 
     componentDidMount() { }
     componentDidUpdate() { }

@@ -62,3 +62,65 @@
             }
 
         }
+
+                        // //@ts-ignore
+                        // console.log(`OldNode: ${_old[i]} Name: ${_old_names[i]} onclick:${_old[i].onclick}`)
+                        // //@ts-ignore
+                        // console.log(`NewNode: ${_new[j]} Name: ${_new_names[j]} onclick:${_new[j].onclick}`)
+                        // //@ts-ignore                      
+                        // console.log(typeof _new[i].onclick)
+                        // console.log("=================================")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            if (new_tree.length >= old_tree.length) {
+                        // Node was added to the tree
+                        for (var l = 0; l < new_tree.length; l++) {
+                            if (!old_tree_names.includes(new_tree_names[l])) {
+                                //@ts-ignore
+                                this.domTree[i][attr].appendChild(newTree.tree[i][attr].children[l])
+                            }else{
+                                //@ts-ignore
+                                this.domTree[i][attr].removeChild(newTree.tree[i][attr].children[l])
+                            }
+                        }
+                    } else if (new_tree.length < old_tree.length) {
+                        // Node was removed to the tree
+                        for (var m = 0; m < old_tree.length; m++) {
+                            if (!new_tree_names.includes(old_tree_names[m])) {
+                                //@ts-ignore
+                                this.domTree[i][attr].removeChild(this.domTree[i][attr].children[m])
+                            }
+                        }
+                    }
+                    else {
+                        for (var m = 0; m < old_tree.length; m++) {
+ 
+                            if (!new_tree_names.includes(old_tree_names[m])) {
+                                //@ts-ignore
+                                this.domTree[i][attr].replaceChild(newTree.tree[i][attr].children[m], this.domTree[i][attr].children[m])
+                            }
+
+                            if (!old_tree_names.includes(new_tree_names[m])) {
+                               console.log(" sec 2")
+                               console.log(newTree.tree[i][attr].children[m])
+                                //@ts-ignore
+                                this.domTree[i][attr].replaceChild(newTree.tree[i][attr].children[m], this.domTree[i][attr].children[m])
+                            }
+
+                        }
+                    }

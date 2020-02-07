@@ -25,14 +25,12 @@ export default class Scaffold extends Tikiti {
             //@ts-ignore
             name: e.target.value
         })
-        console.log(this.state.name)
     }
 
     toggleNav() {
         this.setState({
             width: this.state.width == "0px" ? "250px" : "0px"
         })
-        console.log(this.state.width)
     }
 
     sideNav() {
@@ -69,11 +67,8 @@ export default class Scaffold extends Tikiti {
                 new TopBar({
                     toggleNav: () => this.toggleNav()
                 }),
-                this.state.width == "0px" ?
-                    TextView(" MAIN PAGE ")
-                    :
-                    TextInput({
-                        onchange: this.handleChange,
+                TextInput({
+                        onkeyup: this.handleChange,
                         value: this.state.name,
                         // style:{
                         //     width: this.state.width

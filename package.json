@@ -37,6 +37,7 @@
     "jquery": "^3.4.1",
     "material-components-web": "^4.0.0",
     "material-datatable": "^0.4.1",
+    "morphdom": "^2.5.12",
     "sweetalert": "^2.1.2"
   }
 }
