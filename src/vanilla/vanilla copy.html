@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="morphdom-umd.js"></script>
+    <script>
+
+        var state = {
+            todos: [],
+            value: ''
+        }
+
+        function setState(newState) {
+            state = { ...state, ...newState }
+            console.log(state)
+            morphdom(node, render())
+        }
+
+        function removeTodo(v) {
+            console.log(v)
+            setState({
+                todos: state.todos.filter(value => value != v)
+            })
+        }
+
+
+
+        function todoItem(v) {
+            var todo = document.createElement('div')
+            todo.setAttribute('id',v)
+            var todoX = document.createElement('button')
+            todo.innerText = v
+            todoX.innerText = "Remove"
+            todo.appendChild(todoX)
+            todoX.onclick = () => removeTodo(v)
+            return todo
+        }
+
+        function render() {
+            var { todos } = this.state
+
+            var input = document.createElement('input')
+            input.value = state.value
+
+            input.onkeyup = function (e) {
+                setState({
+                    value: e.target.value
+                })
+            }
+
+            var btn = document.createElement('button')
+            btn.innerText = "Add Todo"
+            btn.onclick = () => {
+                setState({
+                    todos: [...state.todos, state.value],
+                    value: ''
+                })
+            }
+
+            var div = document.createElement('div')
+            div.appendChild(input)
+            div.appendChild(btn)
+
+            var todoList = document.createElement('div')
+
+            todoList.innerHTML = ''
+            todos.forEach((v) => {
+                todoList.appendChild(todoItem(v))
+            })
+            div.appendChild(todoList)
+
+            return div
+        }
+
+        var node = render()
+        document.getElementById("root").appendChild(node)
+
+    </script>
+</body>
+
+</html>

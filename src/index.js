@@ -1,92 +1,184 @@
-import Scaffold from "./framework/scaffold/index";
 import Div from "./framework/core/Div";
-import TextView from "./framework/core/TextView";
-import Button from "./framework/core/Button";
 import Tikiti from "./framework/tikiti/index";
+import Button from "./framework/ui/Button";
+import CheckBox from "./framework/ui/CheckBox";
+import DropDown from "./framework/ui/DropDown";
+import DropDownItem from "./framework/core/DropDownItem";
+import FileField from "./framework/ui/FileField";
+import RadioButton from "./framework/ui/RadioButton";
+import RadioGroup from "./framework/ui/RadioGroup";
+import TextArea from "./framework/ui/TextArea";
+import TextField from "./framework/ui/TextField";
+import ListView from "./framework/ui/ListView";
+import ListItem from "./framework/ui/ListItem";
+import TextView from "./framework/core/TextView";
+import DataTable from "./framework/ui/DataTable";
+import axios from 'axios';
 
 class App extends Tikiti {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      page: this.currentPage(3),
-      color: "blue"
+      checked: true,
+      dropValue: 'F',
+      gender: 'F',
+      file: '',
+      data: []
     }
-    return this.connectedCallBack(this);
+    return this.connect();
   }
 
-  currentPage(key) {
-    switch (key) {
-      case 1:
-        return Div({
-          children: [
-            TextView("Page 1"),
-            Div({
-              children: [
-                TextView("Some content")
-              ]
-            })
-          ]
-        })
-      case 2:
-        return Div({
-          children: [
-            TextView("Page 2")
-          ]
-        })
-      case 3:
-        // return Button({
-        //   onclick: () => this.switchPage(2),
-        //   children: [
-        //     TextView("switch to Page 2")
-        //   ]
-        // })
-           return new Scaffold()
-      default:
-        break;
-    }
+  componentDidMount() {
+    this.generateData()
   }
 
-  switchPage(key) {
-    this.setState({
-      page: this.currentPage(key)
+  async generateData() {
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+    var data = []
+    response.data.forEach((row) => {
+      data.push([
+        row.id,
+        row.name,
+        row.username,
+        row.website,
+        row.phone,
+        row.email,
+        this.action(row.id)
+      ])
+    });
+    this.setState({ data })
+  }
+
+  action(id) {
+    return Button({
+      label: 'X',
+      onclick: () => this.removeFromTable(id),
+      style: {
+        width: '20px',
+        height: '20px'
+      }
     })
+  }
+
+  removeFromTable(id) {
+    this.setState({
+      data: this.state.data.filter(a => a[0] != id)
+    })
+  }
+
+  toggle() {
+    this.setState({
+      checked: !this.state.checked
+    })
+  }
+
+  handleChange(e) {
+    this.setState({
+      dropValue: e.target.value
+    })
+  }
+
+  btnClicked() {
+    console.log("Clicked...")
   }
 
   render() {
     return Div({
       children: [
-        Div({
+
+        Button({
+          label: "Button",
+          onclick: () => this.btnClicked()
+        }),
+
+        CheckBox({
+          onclick: () => this.toggle(),
+          checked: this.state.checked
+        }),
+
+        DropDown({
+          value: this.state.dropValue,
+          onchange: (e) => this.handleChange(e),
           children: [
-            Button({
-              onclick: () => this.switchPage(1),
+            DropDownItem({ value: 'M', label: 'Male' }),
+            DropDownItem({ value: 'F', label: 'Female' })
+          ]
+        }),
+
+        // FileField({
+        //   onchange: (e) => {
+        //     this.setState({
+        //       file: e.target.value
+        //     })
+        //   }
+        // }),
+
+        RadioGroup({
+          onchange: (e) => {
+            this.setState({
+              gender: e.target.value
+            })
+          },
+          children: [
+            RadioButton({
+              group: 'gender',
+              value: 'M',
+              controller: this.state.gender
+            }),
+            RadioButton({
+              group: 'gender',
+              value: 'F',
+              controller: this.state.gender
+            })
+          ]
+        }),
+
+        TextArea({
+          onkeyup: (e) => { console.log(e.target.value) }
+        }),
+
+        TextField({
+          onkeyup: (e) => { console.log(e.target.value) }
+        }),
+
+        ListView({
+          children: [
+            ListItem({
               children: [
-                TextView("Page 1")
+                TextView("Item 1"),
               ]
             }),
-            Button({
-              onclick: () => this.switchPage(2),
+            ListItem({
               children: [
-                TextView("Page 2")
+                TextView("Item 2")
               ]
             }),
-            Button({
-              onclick: () => this.switchPage(3),
+            ListItem({
               children: [
-                TextView("Page 3")
+                TextView("Item 3")
               ]
             })
           ]
         }),
-        Div({
-          id: "page",
-          children: [
-            this.state.page
-          ]
+
+        DataTable({
+          titles: [
+            { title: '#', style: { width: '10px' } },
+            { title: 'Name' },
+            { title: 'Username' },
+            { title: 'Website' },
+            { title: 'Phone' },
+            { title: 'Email' },
+            { title: '', style: { width: '30px' } }
+          ],
+          data: this.state.data
         })
+
       ]
     })
+
   }
 }
 
 
-document.getElementById("root").appendChild(new App());
+Tikiti.Init(new App());

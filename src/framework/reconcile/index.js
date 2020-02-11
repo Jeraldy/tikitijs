@@ -1,6 +1,6 @@
 import morphAttrs from './morphAttrs';
 import morphdomFactory from './morphdom';
 
-var morphdom = morphdomFactory(morphAttrs);
+var reconcile = morphdomFactory(morphAttrs);
 
-export default morphdom;
+export default reconcile;

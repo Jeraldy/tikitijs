@@ -1,95 +1,52 @@
-import morphdom from '../reconcile/index';
+import reconcile from '../reconcile/index';
 
-export default class Tikiti {
+interface LifeCycleMethods {
+    componentDidMount(): void
+    componentDidUpdate(): void
+    componetWillUpdate(): void
+    render(): any
+}
+
+export default class Tikiti implements LifeCycleMethods {
+
+    componentDidMount(): void { }
+    componentDidUpdate(): void { }
+    componetWillUpdate(): void { }
+    render() {
+        throw new Error("Method not implemented.");
+    }
+
     private node: any;
-    private context: any;
-    private update: any;
-    private domTree: {}[] = [];
     props: any;
-    state: any;
+    state: any
 
     constructor(props?: any) {
         this.props = props;
-        this.componentDidMount()
+        this.componentMounted()
     }
 
     async setState(NewState: {}) {
         this.componetWillUpdate()
         this.state = { ...this.state, ...NewState }
-        this.update = this.context.render()
-        this.updateDom()
+        await reconcile(this.node, this.render());
         this.componentDidUpdate()
         return this.state
     }
 
-    private updateDom() {
-        var newTree = this.generateDomTree(this.update)
-        for (var i = 0; i < newTree.tree.length; i++) {
-            for (var attr in this.domTree[i]) {
-                if (attr != "child") {
-                    //@ts-ignore	
-                    if (this.domTree[i][attr] != newTree.tree[i][attr]) {
-                        //@ts-ignore
-                        this.domTree[i][attr] = newTree.tree[i][attr]
-                        //@ts-ignore
-                        this.domTree[i].child.setAttribute(attr, newTree.tree[i][attr])
-                    }
-                }
-            }
-        }
-        morphdom(this.node, this.update);
+    private componentMounted() {
+        document
+            .addEventListener("DOMContentLoaded",
+                (e) => this.componentDidMount());
     }
 
-    private generateDomTree(dom: any): any {
-        var names: any[] = [];
-        var tree: {}[] = []
-        var nodeList = this.domTreeTraversal(dom);
-        nodeList.forEach((child: any) => {
-            names.push(child.nodeName)
-            var childProps = {}
-            for (var key of Object.keys(child.attributes)) {
-                var ch = child.attributes[key]
-                childProps = { ...childProps, ...{ [ch.name]: ch.value } }
-            }
-            tree.push({ ...{ ...childProps, child } })
-            childProps = {}
-        });
-        return { names, tree, nodeList }
-    }
-
-    private domTreeTraversal(dom: any): Array<Object> {
-        var treeWalker = document.createTreeWalker(
-            dom,
-            NodeFilter.SHOW_ELEMENT,
-            { acceptNode: (node) => NodeFilter.FILTER_ACCEPT },
-            false
-        );
-
-        var nodeList = [];
-        var currentNode = treeWalker.currentNode;
-
-        while (currentNode) {
-            nodeList.push(currentNode);
-            currentNode = treeWalker.nextNode();
-        }
-        return nodeList;
-    }
-
-    connectedCallBack(_this: any) {
-        this.context = _this
-        this.node = _this.render()
-        this.initDomTree()
+    connect() {
+        this.node = this.render()
         return this.node
     }
 
-    private initDomTree() {
-        var tree = this.generateDomTree(this.node)
-        this.domTree = tree.tree;
+    static Init = class {
+        constructor(entryNode: any) {
+            document.body.appendChild(entryNode)
+        }
     }
-
-
-    componentDidMount() { }
-    componentDidUpdate() { }
-    componetWillUpdate() { }
-
 }

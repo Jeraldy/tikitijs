@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="morphdom-umd.js"></script>
+    <script>
+
+        class App {
+            constructor() {
+                this.state = {
+                    todos: [],
+                    value: ''
+                }
+
+                this.setState = (newState) => {
+                    this.state = { ...this.state, ...newState }
+                    console.log(this.state)
+                    morphdom(this.node, this.render())
+                }
+
+                var input = document.createElement('input')
+                input.value = this.state.value
+
+                input.onkeyup = function (e) {
+                    this.setState({
+                        value: e.target.value
+                    })
+                }
+
+                var btn = document.createElement('button')
+                btn.innerText = "Add Todo"
+                btn.onclick = () => {
+                    this.setState({
+                        todos: [...this.state.todos, this.state.value],
+                        value: ''
+                    })
+                }
+
+                this.div = document.createElement('div')
+                this.div.appendChild(input)
+                this.div.appendChild(btn)
+                this.todoList = document.createElement('div')
+                this.node = this.render()
+                return this.node
+            }
+
+
+            removeTodo(v) {
+                this.setState({
+                    todos: this.state.todos.filter(value => value != v)
+                })
+            }
+
+            todoItem(v) {
+                var todo = document.createElement('div')
+                var todoX = document.createElement('button')
+                todo.innerText = v
+                todoX.innerText = "Remove"
+                todo.appendChild(todoX)
+                todoX.onclick = () => this.removeTodo(v)
+                return todo
+            }
+
+            render() {
+                var { todos } = this.state
+                this.todoList.innerHTML = ''
+                todos.forEach((v) => {
+                    this.todoList.appendChild(this.todoItem(v))
+                })
+                this.div.appendChild(this.todoList)
+                return this.div
+            }
+
+        }
+
+        document.getElementById("root").appendChild(new App())
+
+    </script>
+</body>
+
+</html>

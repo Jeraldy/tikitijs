@@ -5,19 +5,18 @@ import TextView from "../core/TextView";
 import TopBar from "./TopBar";
 import "./index.css";
 import TextInput from "../core/TextInput";
+import Button from "../core/Button";
 
 export default class Scaffold extends Tikiti {
-    width: string;
     constructor() {
         super();
-        this.width = "0px"
         this.state = {
-            name: "",
+            name: "John",
             width: "0px",
         }
         this.handleChange = this.handleChange.bind(this);
 
-        return this.connectedCallBack(this);
+        return this.connect();
     }
 
     handleChange(e: Event) {
@@ -35,7 +34,6 @@ export default class Scaffold extends Tikiti {
 
     sideNav() {
         return Div({
-            //id: "side-nav-id",
             class: "sidenav",
             style: {
                 width: this.state.width
@@ -57,7 +55,6 @@ export default class Scaffold extends Tikiti {
 
     mainPage() {
         return Div({
-            //id: "main-id",
             style: {
                 backgroundColor: "#EDECEC",
                 height: "100vh",
@@ -68,12 +65,15 @@ export default class Scaffold extends Tikiti {
                     toggleNav: () => this.toggleNav()
                 }),
                 TextInput({
-                        onkeyup: this.handleChange,
-                        value: this.state.name,
-                        // style:{
-                        //     width: this.state.width
-                        // }
-                    })
+                    onkeyup: this.handleChange,
+                    value: this.state.name,
+                }),
+                Button({
+                    children: [
+                        TextView("SWAL")
+                    ],
+                    onclick: () => this.toggleNav()
+                })
             ]
         })
     }
