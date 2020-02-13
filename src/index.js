@@ -14,6 +14,8 @@ import ListItem from "./framework/ui/ListItem";
 import TextView from "./framework/core/TextView";
 import DataTable from "./framework/ui/DataTable";
 import axios from 'axios';
+import Icon from "./framework/ui/Icon";
+import ContextMenu from "./framework/ui/ContextMenu";
 
 class App extends Tikiti {
   constructor() {
@@ -51,12 +53,35 @@ class App extends Tikiti {
 
   action(id) {
     return Button({
-      label: 'X',
+      class: 'parent',
+      icon: Icon({ name: 'more_vert', style: { color: 'gray' } }),
       onclick: () => this.removeFromTable(id),
       style: {
-        width: '20px',
-        height: '20px'
+        width:'auto',
+        backgroundColor: 'transparent',
+        border: 'none'
       }
+    })
+  }
+  action1(id) {
+    return ContextMenu({
+      children: [
+        ListItem({
+          children: [
+            Button({
+              class: 'parent',
+              icon: Icon({ name: 'more_vert', style: { color: 'gray' } }),
+              onclick: () => this.removeFromTable(id),
+              style: {
+                width: '20px',
+                height: '20px',
+                backgroundColor: 'transparent',
+                border: 'none'
+              }
+            })
+          ]
+        })
+      ]
     })
   }
 
@@ -79,7 +104,7 @@ class App extends Tikiti {
   }
 
   btnClicked() {
-    console.log("Clicked...")
+    console.log(this.state)
   }
 
   render() {
@@ -160,16 +185,15 @@ class App extends Tikiti {
             })
           ]
         }),
-
         DataTable({
           titles: [
             { title: '#', style: { width: '10px' } },
-            { title: 'Name' },
-            { title: 'Username' },
-            { title: 'Website' },
-            { title: 'Phone' },
-            { title: 'Email' },
-            { title: '', style: { width: '30px' } }
+            { title: 'NAME' },
+            { title: 'USERNAME' },
+            { title: 'WEBSITE' },
+            { title: 'PHONE' },
+            { title: 'EMAIL' },
+            { title: '', style: { width: '2px' } }
           ],
           data: this.state.data
         })

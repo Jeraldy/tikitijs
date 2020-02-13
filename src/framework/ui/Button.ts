@@ -13,7 +13,7 @@ const style = {
 
 export default (props: any = {}) => {
     props.style = { ...style, ...props.style }
-    props.children = [TextView(props.label || '')]
+    props.children = [props.label ? TextView(props.label) : null, props.icon || null]
     delete props.label
     return Button({
         ...props

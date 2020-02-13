@@ -1,0 +1,8 @@
+	.menu {
+    visibility: hidden;
+}
+
+button + .menu:active,
+button:focus + .menu {
+    visibility: visible;
+}

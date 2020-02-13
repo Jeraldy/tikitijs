@@ -7,21 +7,23 @@ interface LifeCycleMethods {
     render(): any
 }
 
-export default class Tikiti implements LifeCycleMethods {
 
+export default class Tikiti implements LifeCycleMethods {
+   
     componentDidMount(): void { }
     componentDidUpdate(): void { }
     componetWillUpdate(): void { }
     render() {
         throw new Error("Method not implemented.");
-    }
+    } 
 
     private node: any;
-    props: any;
     state: any
+    props: any[];
+
 
     constructor(props?: any) {
-        this.props = props;
+        this.props = props
         this.componentMounted()
     }
 
@@ -36,7 +38,7 @@ export default class Tikiti implements LifeCycleMethods {
     private componentMounted() {
         document
             .addEventListener("DOMContentLoaded",
-                (e) => this.componentDidMount());
+                (_) => this.componentDidMount());
     }
 
     connect() {
