@@ -1,27 +1,32 @@
 import Nav from "../core/Nav";
-import TextView from "../core/TextView";
 import Button from "../core/Button";
+import Icon from "../ui/Icon";
 
 export default class TopBar {
-    node: any;
     constructor(params?: any) {
-        this.node = Nav({
-            id: "topBar",
-            style: {
-                backgroundColor: "#FFFFFF",
-                boxShadow: "0 3px 3px -3px rgba(0,0,0,.2)",
-                color: "black",
-                height:"50px"
-            },
-            children:[
+        return Nav({
+            style: TopBar_Style,
+            children: [
                 Button({
-                    onclick: () => params.toggleNav(),
-                    children:[
-                        TextView("Open")
-                    ]
+                    onclick: () => params.toggle(),
+                    children: [Icon({ name: "menu" })],
+                    style: Btn_Style
                 })
             ]
         })
-        return this.node;
     }
+}
+
+const TopBar_Style = {
+    backgroundColor: "#FFFFFF",
+    boxShadow: "0 3px 3px -3px rgba(0,0,0,.2)",
+    color: "black",
+    height: "40px"
+}
+
+const Btn_Style = {
+    backgroundColor: 'transparent',
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer'
 }

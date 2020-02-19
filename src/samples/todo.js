@@ -1,10 +1,10 @@
 import Div from "./framework/core/Div";
 import TextView from "./framework/core/TextView";
-import Tikiti from "./framework/tikiti/index";
+import { Tikiti, StatefulWidget } from "./framework/tikiti/index";
 import Button from "./framework/core/Button";
 import TextInput from "./framework/core/TextInput";
 
-class App extends Tikiti {
+class App extends StatefulWidget {
   constructor(props) {
     super(props)
     this.state = {

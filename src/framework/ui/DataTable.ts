@@ -8,21 +8,33 @@ import Tr from "../core/Tr"
 import './table.css';
 import Div from "../core/Div"
 import TextField from "./TextField"
-import Tikiti from "../tikiti/index"
+import { StatefulWidget } from "../tikiti/index"
 import Link from "../core/Link"
 import Icon from "./Icon"
+import Button from "../core/Button"
+import { genId } from "./utils"
 
 export default (props: any = {}) => {
-    return new JTable(props)
+    return new _DataTable(props)
 }
 
-var table_data: any[] = []
-class JTable extends Tikiti {
+enum DIMS {
+    SIZE = 3
+}
+
+let DATA: any[] = []
+
+class _DataTable extends StatefulWidget {
 
     constructor(props: any) {
         super()
-        table_data = props.data || []
-        this.state = { ...props, query: '', start: 0, end: 3 }
+        DATA = props.data || []
+        this.state = {
+            ...props,
+            query: '',
+            data: DATA.slice(0, DIMS.SIZE)
+        }
+      
         return this.connect()
     }
 
@@ -33,12 +45,11 @@ class JTable extends Tikiti {
         }).then((state) => {
             this.filterTable(state.query.toLowerCase())
         })
-
     }
 
     filterTable(query: string) {
         var _data: any[] = [];
-        table_data.forEach((row: any) => {
+        DATA.forEach((row: any) => {
             for (var j = 0; j < row.length; j++) {
                 if (typeof row[j] != 'object') {
                     if (row[j].toString().toLowerCase().includes(query)) {
@@ -48,23 +59,17 @@ class JTable extends Tikiti {
                 }
             }
         })
-        this.setState({
-            data: _data
-        })
+        this.setState({ data: _data.slice(0, DIMS.SIZE) })
     }
 
     goToPage(params: any) {
-        this.setState({
-            data: []//table_data.slice(params.start, params.end)
-        })
+        this.setState({ data: DATA.slice(params.start, params.end) })
     }
 
     render() {
         //@ts-ignore
-        let { id, titles, data, query, start, end, ...rest } = { ...this.state }
-        console.log(data.length)
+        let { id, titles, data, query, ...rest } = { ...this.state }
         id = id || Math.random()
-        id = `dt_${id}`
         titles = titles || []
         data = data || []
 
@@ -86,8 +91,7 @@ class JTable extends Tikiti {
             )
         });
 
-        thead.push(Tr({ children: _tr, id: Math.random(), }))
-
+        thead.push(Tr({ children: _tr, id: genId() }))
         data.forEach((row: any) => {
             var tr: any[] = []
             row.forEach((d: any) => {
@@ -98,64 +102,95 @@ class JTable extends Tikiti {
                     })
                 )
             });
-            tbody.push(Tr({ children: tr, id: Math.random(), }))
+            tbody.push(Tr({ children: tr, id: genId() }))
         });
 
-
         return Div({
+            id: genId(),
             style: {
                 overflowX: 'auto',
                 border: '1px solid #ccc',
                 padding: '5px',
                 borderRadius: '2px',
-                boxShadow: '-3px 3px 3px -3px rgba(0,0,0,.5)'
+                boxShadow: '-3px 3px 3px -3px rgba(0,0,0,.5)',
+                backgroundColor: 'white'
             },
             children: [
                 Div({
-                    class: 'search-container',
-                    style: {
-                        float: 'right',
-                    },
+                    style: { height: '20px', fontSize: '20px' },
                     children: [
-                        Icon({
-                            name: 'search',
-                            style:{
-                                position: 'relative',
-                                top:'5px',
-                                color:'#ccc'
-                            }
+                        TextView(`Registered Customers`)
+                    ]
+                }),
+                Div({
+                    style: {
+                        width: '100%',
+                        border: '1px dashed #ccc',
+                        marginTop: '5px',
+                        marginBottom: '5px'
+                    }
+                }),
+                Div({
+                    children: [
+                        Button({
+                            children: [
+                                Icon({
+                                    name: 'add',
+                                    style: {
+                                        display: "inline-block",
+                                        verticalAlign: 'middle'
+                                    }
+                                }),
+                                TextView("Add New")
+                            ],
                         }),
-                        TextField({
-                            placeholder: "Search",
+                        Div({
+                            class: 'search-container',
                             style: {
-                                border: 'hidden',
-                                height: '10px',
-                                position:'relative',
-                                top:'-5px'
+                                float: 'right',
                             },
-                            value: query,
-                            onkeyup: (e: Event) => this.handleChange(e)
+                            children: [
+                                Icon({
+                                    name: 'search',
+                                    style: {
+                                        position: 'relative',
+                                        top: '5px',
+                                        color: '#ccc'
+                                    }
+                                }),
+                                TextField({
+                                    placeholder: "Search",
+                                    style: {
+                                        border: 'hidden',
+                                        height: '10px',
+                                        position: 'relative',
+                                        top: '-5px'
+                                    },
+                                    value: query,
+                                    onkeyup: (e: Event) => this.handleChange(e)
+                                }),
+                            ]
                         }),
                     ]
                 }),
                 Table({
+                    id,
                     ...rest,
                     children: [
-                        Thead({ children: thead, 
-                            style: { 
-                            backgroundColor: '#EEF1F4',
-                            fontSize:'12px',
-                            color:'#757575',
-                            fontFamily:'Lucida Console'
-                        } }),
+                        Thead({
+                            children: thead,
+                            style: {
+                                backgroundColor: '#EEF1F4',
+                                fontSize: '12px',
+                                color: '#757575',
+                                fontFamily: 'Lucida Console'
+                            }
+                        }),
                         Tbody({ children: tbody })
                     ]
                 }),
                 FilterInfo(),
-                Pagination({
-                    size: 3,
-                    goToPage: (params: any) => this.goToPage(params)
-                })
+                Pagination({ goToPage: (params: any) => this.goToPage(params) })
             ]
         })
     }
@@ -167,23 +202,25 @@ function FilterInfo(params?: any) {
             fontStyle: 'italic'
         },
         children: [
-            TextView("Showing 3 out of 10")
+            TextView(`Showing ${DIMS.SIZE} out of ${DATA.length}`)
         ]
     })
 }
 
 function Pagination(params?: any) {
     //@ts-ignore
-    let { len, size, goToPage } = { len: table_data.length, ...params }
-    const numPages = Math.floor(len / size) + len % size;
+    let { len, goToPage } = { len: DATA.length, ...params }
+    const numPages = Math.floor(len / DIMS.SIZE) + len % DIMS.SIZE;
     let pages = []
     let start = 0
-    let end = size
+    let end = DIMS.SIZE
+
     for (var i = 0; i < numPages; i++) {
         pages.push(Page({ goToPage, start, end, counter: i }))
-        start = end + 1
-        end = start + size
+        start = end
+        end = start + DIMS.SIZE
     }
+
     return Div({
         class: 'pagination',
         style: {
@@ -222,6 +259,11 @@ function Pagination(params?: any) {
                 style: {
                     height: '18px',
                     width: '15px'
+                },
+                onclick: () => {
+                    if (start < DATA.length) {
+                        //goToPage({ start: start, end: params.end })
+                    }
                 }
             })
         ]
@@ -231,16 +273,8 @@ function Pagination(params?: any) {
 function Page(params: any) {
     return Link({
         href: "#",
-        onclick: (e: Event) => {
-            params.goToPage({
-                start: params.start,
-                end: params.end
-            }),
-                //@ts-ignore
-                e.target.classList.add('active')
-        },
-        children: [
-            TextView(params.counter + 1)
-        ]
+        onclick: (e: Event) => params.goToPage({ start: params.start, end: params.end }),
+        children: [TextView(params.counter + 1)],
+        id: genId(),
     })
 }

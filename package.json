@@ -34,10 +34,12 @@
     "codyhouse-framework": "^2.3.3",
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
+    "flatpickr": "^4.6.3",
     "jquery": "^3.4.1",
     "material-components-web": "^4.0.0",
     "material-datatable": "^0.4.1",
     "morphdom": "^2.5.12",
+    "redux": "^4.0.5",
     "sweetalert": "^2.1.2"
   }
 }

@@ -1,0 +1,141 @@
+{
+   "blockedLinkPageOpenedSecureExplanation": {
+      "description": "Explain to the user that they have opened the website in a secure web browser.",
+      "message": "Hai aperto questo sito in HP Sure Click Secure Browser."
+   },
+   "blockedLinkPageTitle": {
+      "description": "Warn the user that they may be visiting an unsafe website.",
+      "message": "Questo sito potrebbe contenere potenziali minacce:"
+   },
+   "blockedPDFPageOpenedSecureExplanation": {
+      "description": "Explain to the user that they have opened the PDF file in a secure web browser.",
+      "message": "Hai aperto questo file PDF in HP Sure Click Secure Browser."
+   },
+   "blockedPDFPageTitle": {
+      "description": "Warn the user that they may be about to view an unsafe PDF file.",
+      "message": "Il file PDF di questo sito potrebbe contenere potenziali minacce:"
+   },
+   "blockedPageContinue": {
+      "description": "Button to continue using the original web browser.",
+      "message": "Continua in questo browser"
+   },
+   "blockedPageContinueV2": {
+      "description": "Button to continue using the original web browser.",
+      "message": "Continua su $thisBrowser$",
+      "placeholders": {
+         "thisBrowser": {
+            "content": "$1",
+            "example": "Google Chrome"
+         }
+      }
+   },
+   "blockedPageDontAskAgain": {
+      "description": "Checkbox to always use the current browser and not ask the user again.",
+      "message": "Non chiedere di nuovo; usa sempre questo browser"
+   },
+   "blockedPageHelpLink": {
+      "description": "Help link text.",
+      "message": "Per saperne di più"
+   },
+   "blockedPageRemember": {
+      "description": "Checkbox to remember the user's choice.",
+      "message": "Ricorda la mia decisione per questo sito"
+   },
+   "blockedPageSBXOpenedSecureExplanation": {
+      "description": "Inform the user that the extension has opened the site in a secure web browser.",
+      "message": "Questo sito è stato aperto in HP Sure Click Secure Browser."
+   },
+   "blockedPageSecure": {
+      "description": "Button to open the website in a secure web browser.",
+      "message": "Apri in Secure Browser"
+   },
+   "blockedPageSecureBrowserExplanation": {
+      "description": "Explain the Secure Browser to the user.",
+      "message": "HP Sure Click Secure Browser aiuta a proteggere il PC da siti Web e file infettati da malware, ransomware o virus."
+   },
+   "blockedPageSecureV2": {
+      "description": "Button to open the website in a secure web browser.",
+      "message": "Apri in $secureBrowser$",
+      "placeholders": {
+         "secureBrowser": {
+            "content": "$1",
+            "example": "Bromium Secure Browser"
+         }
+      }
+   },
+   "blockedPageWarningTooltip": {
+      "description": "Tooltip explaining why a site has been blocked.",
+      "message": "Sito Web non identificato rilevato da HP Sure Click"
+   },
+   "contextMenuOpenSecure": {
+      "description": "Context menu item to open a link in a secure web browser.",
+      "message": "Apri in Secure Browser"
+   },
+   "extDescription": {
+      "description": "Web browser extension description.",
+      "message": "Navigazione su Internet sicura con HP Sure Click Secure Browsing."
+   },
+   "extName": {
+      "description": "Web browser extension name.",
+      "message": "HP Sure Click Secure Browsing"
+   },
+   "locale": {
+      "message": "it"
+   },
+   "popupClearRememberedDecisionsButton": {
+      "description": "Button to forget all decisions remembered by the extension.",
+      "message": "Cancella siti"
+   },
+   "popupClearRememberedDecisionsText": {
+      "description": "Message explaining that popupClearRememberedDecisionsButton forgets all decisions remembered by the extension.",
+      "message": "HP Sure Click Secure Browsing ricorda quali siti sono stati scelti per accedervi in sicurezza utilizzando HP Sure Click Secure Browser e quali siti sono stati scelti per essere aperti utilizzando il browser predefinito. Fare clic sul pulsante seguente per eliminare queste scelte."
+   },
+   "popupDontAskAgain": {
+      "description": "Message displayed when the user has told the extension not to ask again and to always use this browser.",
+      "message": "Hai scelto di aprire tutti i siti in questo browser."
+   },
+   "popupGenericError": {
+      "description": "Message displayed when there is an unknown error. The '\n' marks a new line.",
+      "message": "HP Sure Click ha riscontrato un errore.\nRiavviare il browser."
+   },
+   "popupHelpLinkFile": {
+      "description": "URL for the help page.",
+      "message": "it/secure-browsing.html"
+   },
+   "popupHelpLinkText": {
+      "description": "Text which links to the help page.",
+      "message": "Maggiori informazioni"
+   },
+   "popupInitRequired": {
+      "description": "Message displayed when the product requires initialization.",
+      "message": "HP Sure Click deve essere inizializzato."
+   },
+   "popupIs32bitFirefox": {
+      "description": "Message displayed when an incompatible version of Firefox is installed.",
+      "message": "Questa estensione non supporta Firefox 32 bit. Installare Firefox 64 bit."
+   },
+   "popupMissingHelper": {
+      "description": "Message displayed when there is an error because the product is not installed.",
+      "message": "L'estensione non può connettersi a HP Sure Click. Verificare che una versione compatibile di HP Sure Click sia stata installata e che sia in esecuzione."
+   },
+   "popupNoError": {
+      "description": "Message displayed when there are no errors.",
+      "message": "Protezione di HP Sure Click attiva."
+   },
+   "popupProductDisabled": {
+      "description": "Message displayed when the whole product (not just the extension) is disabled.",
+      "message": "HP Sure Click è disabilitato."
+   },
+   "popupSBXDisabled": {
+      "description": "Message displayed when the extension is not enabled by configuration. The '\n' marks a new line.",
+      "message": "Questa estensione è stata disabilitata.\nContattare l'amministratore di sistema."
+   },
+   "popupUnconfigured": {
+      "description": "Message displayed to a consumer customer when the product is unlicensed.",
+      "message": "HP Sure Click è in attesa di configurazione ed è stato disabilitato."
+   },
+   "popupUnlicensed": {
+      "description": "Message displayed to an enterprise customer when the product is unlicensed.",
+      "message": "HP Sure Click è privo di licenza ed è stato disabilitato."
+   }
+}

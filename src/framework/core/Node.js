@@ -29,7 +29,7 @@ export default (props = {}, tag) => {
             node.setAttribute(key, props[key]);
         }
     }
-    //node.setAttribute("ref", Math.random().toString(36))
+    //node.setAttribute("id", Math.random().toString(36))
     return node;
 }
 
