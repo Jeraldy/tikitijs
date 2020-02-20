@@ -28,6 +28,7 @@ class _DataTable extends StatefulWidget {
 
     constructor(props: any) {
         super()
+        // console.log(props)
         DATA = props.data || []
         this.state = {
             ...props,

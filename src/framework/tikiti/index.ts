@@ -31,11 +31,8 @@ export class StatefulWidget implements LifeCycleMethods {
         this.state = { ...this.state, ...NewState }
         var x = this.node
         var y = this.render()
-        await reconcile(x,y);
-        //@ts-ignore
-        if(x.innerHTML.length == y.innerHTML.length){
-            console.log(true)
-        }
+        await reconcile(x, y);
+        this.runTest(x, y)
         this.componentDidUpdate()
         return this.state
     }
@@ -49,6 +46,11 @@ export class StatefulWidget implements LifeCycleMethods {
     connect() {
         this.node = this.render()
         return this.node
+    }
+
+    runTest(x: any, y: any) {
+        //@ts-ignore
+        //console.log(x.innerHTML.length == y.innerHTML.length)
     }
 
     static Init = class {
