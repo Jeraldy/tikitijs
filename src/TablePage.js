@@ -8,7 +8,8 @@ import SIZE from "./framework/utils/Size";
 class TablePage extends StatefulWidget {
     constructor(props) {
         super()
-        this.state = { data: [
+        this.state = { 
+            data: [
             [1,'Jeraldy Deus','Something','qweq','eqweqw','53484', this.action(1)],
             [2,'Jeraldy James','Something','qweq','eqweqw','53484', this.action(2)],
             [3,'Jeraldy Khamis','Something','qweq','eqweqw','53484', this.action(3)],

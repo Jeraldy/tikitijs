@@ -7,10 +7,9 @@ export const dispatch = (props) => {
     return store.dispatch(props)
 }
 
-
-export const updateState = (mapStoreToState, context) => {
+export const updateState = (context) => {
     store.subscribe(() => {
-        var newState = mapStoreToState(store.getState())
+        var newState = context.mapStoreToState(store.getState())
         context.setState({ ...context.state, ...newState })
     })
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { dispatch } from '../store/index';
+import { dispatch } from '../store';
 import { actions } from '../reducers/data';
 const {
     fetchUsersStart,

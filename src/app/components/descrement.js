@@ -1,5 +1,5 @@
 import { actions } from '../reducers/counter';
-import { updateState, dispatch } from '../store/index';
+import { updateState, dispatch } from '../store';
 import { StatefulWidget } from '../../framework/tikiti/index';
 import Button from '../../framework/ui/Button';
 const { decrement } = actions
@@ -16,7 +16,7 @@ class Descrement extends StatefulWidget {
     }
 
     componentDidMount() {
-        updateState(this.mapStoreToState, this)
+        updateState(this)
     }
 
     render() {

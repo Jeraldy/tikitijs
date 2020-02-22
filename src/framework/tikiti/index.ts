@@ -4,12 +4,13 @@ interface LifeCycleMethods {
     componentDidMount(): void
     componentDidUpdate(): void
     componetWillUpdate(): void
+    mapStoreToState(reduxState: any): {}
     render(): any
 }
 
 
 export class StatefulWidget implements LifeCycleMethods {
-
+    mapStoreToState(reduxState: any): {} { return {} }
     componentDidMount(): void { }
     componentDidUpdate(): void { }
     componetWillUpdate(): void { }
@@ -18,9 +19,9 @@ export class StatefulWidget implements LifeCycleMethods {
     }
 
     private node: any;
+    readonly props: any[];
     state: any
-    props: any[];
-
+    
     constructor(props?: any) {
         this.props = props
         this.componentMounted()

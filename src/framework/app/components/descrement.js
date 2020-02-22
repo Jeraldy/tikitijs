@@ -15,7 +15,7 @@ class Descrement extends StatefulWidget {
     }
 
     componentDidMount() {
-        updateState(this.mapStoreToState, this)
+        updateState(this)
     }
 
     render() {

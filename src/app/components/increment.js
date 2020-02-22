@@ -1,5 +1,5 @@
 import { actions } from '../reducers/counter';
-import { updateState, dispatch } from '../store/index';
+import { updateState, dispatch } from '../store';
 import { StatefulWidget } from "../../framework/tikiti/index";
 import Button from '../../framework/ui/Button';
 import Div from '../../framework/core/Div';
@@ -21,7 +21,7 @@ class Increment extends StatefulWidget {
     }
 
     componentDidMount() {
-        updateState(this.mapStoreToState, this)
+        updateState(this)
     }
 
     removeFromTable(id) {
