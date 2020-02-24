@@ -19,7 +19,7 @@ export default (props: any = {}) => {
 }
 
 enum DIMS {
-    SIZE = 3
+    SIZE = 10
 }
 
 let DATA: any[] = []
@@ -114,7 +114,8 @@ class _DataTable extends StatefulWidget {
                 padding: '5px',
                 borderRadius: '2px',
                 boxShadow: '-3px 3px 3px -3px rgba(0,0,0,.5)',
-                backgroundColor: 'white'
+                backgroundColor: 'white',
+                overflowY:'hidden'
             },
             children: [
                 Div({

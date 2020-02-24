@@ -1,6 +1,6 @@
 import Div from "../core/Div"
 
-export default (props: any) => {
+export default (props: any = {}) => {
     let style = { ...props.style || {} }
     delete props.style
     return Div({
