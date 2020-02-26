@@ -17,9 +17,7 @@ export default ({ menuItems, id }: { menuItems: Array<any>, id: string }) => {
                 'aria-hidden': "true",
                 'aria-orientation': "vertical",
                 tabindex: "-1",
-                children: [
-                    ...menuItems || []
-                ]
+                children: menuItems || []
             })
         ]
     })

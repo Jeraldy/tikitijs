@@ -74,9 +74,9 @@ class _DataTable extends StatefulWidget {
         titles = titles || []
         data = data || []
 
-        var thead: any[] = []
-        var tbody: any[] = []
-        var _tr: any[] = []
+        let thead: any[] = []
+        let tbody: any[] = []
+        let _tr: any[] = []
 
         titles.forEach((titleObject: any = {}) => {
             //@ts-ignore

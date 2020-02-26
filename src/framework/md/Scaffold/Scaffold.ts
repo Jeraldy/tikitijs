@@ -1,6 +1,6 @@
 import Div from "../../core/Div"
 import Main from "../../core/Main"
-
+import '../style.scss';
 
 export default ({ drawer, appBar, body }: { drawer: any, appBar: any, body: any }) => {
     return Div({

@@ -4,19 +4,18 @@ import ActionItem from "../AppBars/ActionItem"
 import AppBarTitle from "../AppBars/AppBarTitle"
 import BarType from "../AppBars/AppBarType"
 import Alignment from "../AppBars/ActionAlignment"
-import { toggleDrawer } from "../Drawer/Drawer"
 
-export default ()=>{
+export default (props)=>{
     return  AppBar({
         barType: BarType.DENSE,
         children: [
             Actions({
                 align: Alignment.START,
                 items: [
-                    ActionItem({
-                        icon: 'menu',
-                        onclick: () => toggleDrawer()
-                    }),
+                    // ActionItem({
+                    //     icon: 'menu',
+                    //     onclick: () => props.toggleNav()
+                    // }),
                     AppBarTitle("San Francisco, CA")
                 ]
             }),

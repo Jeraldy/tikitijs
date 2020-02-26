@@ -30,7 +30,7 @@ export default (props: any = {}) => {
     props.style = { ...style, ...props.style }
     props.children = [TextView(props.label || '')]
     delete props.label
-    var ref = props.id || Math.random()
+    const ref = props.id || Math.random()
     init(ref);
     return Span({
         children: [

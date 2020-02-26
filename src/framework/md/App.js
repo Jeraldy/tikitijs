@@ -1,5 +1,5 @@
 import { StatefulWidget } from "../tikiti/index";
-import Drawer from "./Drawer/Drawer";
+import Drawer, { toggleDrawer } from "./Drawer/Drawer";
 import DrawerType from "./Drawer/DrawerTypes";
 import Scaffold from "./Scaffold/Scaffold";
 import Div from "../core/Div";
@@ -11,11 +11,13 @@ import FormPage from "./pages/FormPage";
 import SideMenu from "./pages/SideMenu";
 import ToolBar from "./pages/ToolBar";
 import ListPage from "./pages/ListPage";
+import LayoutPage from "./pages/LayoutPage";
+import GridPage from "./pages/GridPage";
 
 class App extends StatefulWidget {
     constructor() {
         super()
-        this.state = { key: 2 }
+        this.state = { key: 5, open: true }
         return this.connect()
     }
 
@@ -27,6 +29,10 @@ class App extends StatefulWidget {
                 return FormPage()
             case 3:
                 return ListPage()
+            case 4:
+                return GridPage()
+            case 5:
+                return LayoutPage()
             default:
                 break
         }
@@ -36,9 +42,16 @@ class App extends StatefulWidget {
         this.setState({ key })
     }
 
+    toggleNav() {
+        this.setState({
+            open: !this.state.open
+        })
+        //toggleDrawer()
+    }
+
     avator() {
         return Image({
-            src: 'https://www.moderatecontent.com/img/sample_face_3.jpg',
+            //src: 'https://www.moderatecontent.com/img/sample_face_3.jpg',
             style: {
                 borderRadius: SIZE._100px,
                 height: SIZE._40px,
@@ -50,15 +63,22 @@ class App extends StatefulWidget {
     render() {
         return Scaffold({
             drawer: Drawer({
+                open: this.state.open,
                 header: DrawerHeader({
-                    children: [this.avator(), DrawerHeaderSubTitle("deusjeraldy@gmail.com")]
+                    children: [
+                        this.avator(),
+                        DrawerHeaderSubTitle("deusjeraldy@gmail.com")
+                    ]
                 }),
-                type: DrawerType.DISMISSIBLE,
+                type: DrawerType.PERMANENT,
                 action: SideMenu({
-                    goToPage: (key) => this.goToPage(key)
+                    goToPage: (key) => this.goToPage(key),
+                    key: this.state.key
                 })
             }),
-            appBar: ToolBar(),
+            appBar: ToolBar({
+                toggleNav: () => this.toggleNav()
+            }),
             body: Div({
                 style: { padding: SIZE._20px },
                 children: [
