@@ -51,6 +51,9 @@ export class StatefulWidget implements LifeCycleMethods {
     runTest(x: any, y: any) {
         //@ts-ignore
         console.log(x.innerHTML.length == y.innerHTML.length)
+        if(x.innerHTML.length != y.innerHTML.length){
+            x.parent
+        }
     }
 
     static Init = class {

@@ -2,6 +2,7 @@
 // https://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
 
 enum Colors {
+    white = "white",
     absolute_zero = '#0048BA',
     acid_green = '#B0BF1A',
     aero = '#7CB9E8',

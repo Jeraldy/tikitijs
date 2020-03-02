@@ -4,10 +4,8 @@ import ButtonTypes from "../Button/ButtonTypes"
 import _Button from '../../ui/Button';
 import Div from "../../core/Div";
 import _TextField from "../../ui/TextField";
-import TextField from "../TextField/TextField";
-import textFieldTypes from "../TextField/TextFieldTypes";
-import TextArea from "../TextField/TextArea";
-import CheckBox from "../TextField/CheckBox";
+import Row, { RowAlignment } from "../../layouts/Row";
+import DatePicker from "../../widgets/DatePicker/index";
 
 export default () => {
     return Div({
@@ -24,45 +22,20 @@ export default () => {
                     Button({ type: ButtonTypes.RAISED, label: 'RAISED' }),
                     Button({ type: ButtonTypes.OUTLINED, label: 'OUTLINED' }),
                     Button({ type: ButtonTypes.UNELEVETED, label: 'UNELEVETED' }),
-                    _Button({ label: 'DEFAULT' })
+                    _Button({ label: 'DEFAULT' }),
+
                 ]
             }),
             Card({
-                style: {
-                    display: 'flex',
-                    flexGrow: 'row',
-                    flexWrap: 'wrap',
-                    justifyContent: 'space-between',
-                    padding: '50px'
-                },
+                style: { padding: '20px' },
                 children: [
-                    TextField({ label: 'Outlined', helperText: 'helper text' ,id:"UNKOWN"}),
-                    TextField({ label: 'Outlined', leadingIcon: 'event' }),
-                    TextField({ label: 'Outlined', trailingIcon: 'event' }),
-                    _TextField({ placeholder: 'default', style: { height: '20px' } }),
-                    TextArea({ label: 'textArea' }),
-                    TextField({ label: 'Filled', type: textFieldTypes.FILLED, leadingIcon: 'event' }),
-                    TextField({ label: 'Filled', type: textFieldTypes.FILLED }),
-                    TextField({ label: 'Filled', type: textFieldTypes.FILLED, trailingIcon: 'event' }),
-                ]
-            }),
-            Card({
-                style: {
-                    display: 'flex',
-                    flexGrow: 'row',
-                    flexWrap: 'wrap',
-                    justifyContent: 'space-between',
-                    padding: '50px'
-                },
-                children: [
-                    //CheckBox(),
-                    TextField({ label: 'Outlined', leadingIcon: 'event' }),
-                    TextField({ label: 'Outlined', trailingIcon: 'event' }),
-                    _TextField({ placeholder: 'default', style: { height: '20px' } }),
-                    TextArea({ label: 'textArea' }),
-                    TextField({ label: 'Filled', type: textFieldTypes.FILLED, leadingIcon: 'event' }),
-                    TextField({ label: 'Filled', type: textFieldTypes.FILLED }),
-                    TextField({ label: 'Filled', type: textFieldTypes.FILLED, trailingIcon: 'event' }),
+                    Row({
+                        align: RowAlignment.SpaceEvenly,
+                        children: [
+                            _TextField({ placeholder: 'default', style: { height: '20px' } }),
+                            Button({ type: ButtonTypes.FLAT, label: 'FLAT' }),
+                        ]
+                    }),
                 ]
             })
         ]

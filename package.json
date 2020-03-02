@@ -33,6 +33,7 @@
     "@nx-js/observer-util": "^4.2.2",
     "@reduxjs/toolkit": "^1.2.5",
     "@types/jquery": "^3.3.31",
+    "animejs": "^3.1.0",
     "axios": "^0.19.2",
     "codyhouse-framework": "^2.3.3",
     "datatables.net": "^1.10.20",
@@ -44,6 +45,7 @@
     "morphdom": "^2.5.12",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "window-date-picker": "^1.0.1"
   }
 }

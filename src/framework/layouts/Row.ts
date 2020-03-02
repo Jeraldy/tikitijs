@@ -3,6 +3,7 @@ import Div from "../core/Div"
 const style = ({ align }: { align?: string }) => {
     return {
         display: 'flex',
+        width: '100%',
         justifyContent: align || RowAlignment.Start
     }
 }
@@ -11,7 +12,7 @@ type rAlign = rowAlignment.Start | rowAlignment.End | rowAlignment.Center
     | rowAlignment.SpaceBetween | rowAlignment.SpaceEvenly
 
 export default ({ children, align, ...props }:
-    { children: Array<any>, align: rAlign, props: any }) => {
+    { children: Array<any>, align?: rAlign, props?: any }) => {
 
     return Div({ children, style: style({ align }), ...props })
 }

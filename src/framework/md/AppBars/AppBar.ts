@@ -12,10 +12,7 @@ export default ({ barType, children }: { barType: _BarType, children: Array<any>
         class: barType || BarType.STANDARD,
         id: "app-bar",
         children: [
-            Div({
-                class: cls,
-                children: children || []
-            })
+            Div({ class: cls, children: children || [] })
         ],
         style: {
             backgroundColor: '#ff6600',

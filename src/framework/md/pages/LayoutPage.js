@@ -127,10 +127,10 @@ export default () => {
                     Divider(),
                     Column({
                         children: [
-                            RowChild('CHILD 1', Colors.blue3),
-                            RowChild('CHILD 2', Colors.acid_green),
-                            RowChild('CHILD 3', Colors.dark_sky_blue),
-                            RowChild('CHILD 4', Colors.alloy_orange),
+                            RowChild('CHILD 1', Colors.blue3,Size._100px),
+                            RowChild('CHILD 2', Colors.acid_green,Size._200px),
+                            RowChild('CHILD 3', Colors.dark_sky_blue,Size._300px),
+                            RowChild('CHILD 4', Colors.alloy_orange,Size._150px),
                         ]
                     })
                 ]
@@ -192,12 +192,12 @@ export default () => {
     })
 }
 
-function RowChild(name, color) {
+function RowChild(name, color,width) {
     return Div({
         style: {
             backgroundColor: color,
             height: Size._50px,
-            width: Size._100px,
+            width: width,
             display: 'flex',
             justifyContent: 'center', // Horizontal
             alignItems: 'center', // Vertical

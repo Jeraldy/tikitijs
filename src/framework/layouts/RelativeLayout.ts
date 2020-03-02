@@ -10,13 +10,14 @@ export default ({ children }: { children: Array<any> }) => {
     return Div({ children, style })
 }
 
-export function Locate({ child, x, y }: { child: any, x: number, y: number }) {
+export function Locate({ child, x, y, zIndex }: { child: any, x: number, y: number, zIndex?: number }) {
     return Div({
         children: [child],
         style: {
             position: 'absolute',
             top: `${y}px`,
-            left: `${x}px`
+            left: `${x}px`,
+            zIndex: zIndex || 0
         }
     })
 }

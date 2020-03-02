@@ -1,6 +1,7 @@
 import DrawerAction from "../Drawer/Actions";
 import DrawerActionItem, { DrawerActionDivider } from "../Drawer/ActionItem";
 import Icons from "../../utils/Icons";
+import SideMenu from "../../widgets/SideMenu/index";
 
 export default ({ key, goToPage }) => {
     return DrawerAction({
@@ -20,7 +21,7 @@ export default ({ key, goToPage }) => {
             }),
             DrawerActionDivider(),
             DrawerActionItem({
-                label: 'List',
+                label: 'Dialog',
                 icon: Icons.list,
                 activated: key == 3,
                 onclick: () => goToPage(3),
@@ -39,11 +40,27 @@ export default ({ key, goToPage }) => {
             }),
             DrawerActionDivider(),
             DrawerActionItem({
-                label: 'Misc',
+                label: 'Animation',
                 icon: Icons.important_devices,
                 activated: key == 6,
                 onclick: () => goToPage(6)
             }),
+            DrawerActionItem({
+                label: 'Stepper',
+                icon: Icons.system_update_alt,
+                activated: key == 7,
+                onclick: () => goToPage(7)
+            }),
+            DrawerActionItem({
+                label: 'Border Pane',
+                icon: Icons.check_circle,
+                activated: key == 8,
+                onclick: () => goToPage(8)
+            }),
+            // SideMenu({title: 'Home'}),
+            // SideMenu({title: 'Settings'}),
+            // SideMenu({title: 'Home 2'}),
+            // SideMenu({title: 'Settings 3'})
         ]
     })
 }

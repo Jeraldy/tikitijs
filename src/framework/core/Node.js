@@ -19,6 +19,8 @@ export default (props = {}, tag) => {
         props.style = style
     }
 
+ 
+
     for (var key of Object.keys(props)) {
         if (typeof props[key] === 'function') {
             if (props[key] !== null) {
@@ -29,7 +31,9 @@ export default (props = {}, tag) => {
             node.setAttribute(key, props[key]);
         }
     }
-    //node.setAttribute("id", Math.random().toString(36))
+    if(!props.id){
+        node.setAttribute("id", Math.random().toString(36))
+    }
     return node;
 }
 

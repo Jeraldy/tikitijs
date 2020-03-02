@@ -11,6 +11,7 @@ export default (props: any = {}) => {
             borderRadius: '2px',
             boxShadow: '-3px 3px 3px -3px rgba(0,0,0,.5)',
             backgroundColor: 'white',
+            height:'100%',
             ...style
         },
         ...props

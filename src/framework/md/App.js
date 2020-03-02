@@ -10,14 +10,17 @@ import TablePage from "../../TablePage";
 import FormPage from "./pages/FormPage";
 import SideMenu from "./pages/SideMenu";
 import ToolBar from "./pages/ToolBar";
-import ListPage from "./pages/ListPage";
 import LayoutPage from "./pages/LayoutPage";
 import GridPage from "./pages/GridPage";
+import AnimationPage from "./pages/AnimationPage";
+import StepperPage from "./pages/StepperPage";
+import BorderPanePage from "./pages/BorderPanePage";
+import DialogPage from "./pages/DialogPage";
 
 class App extends StatefulWidget {
     constructor() {
         super()
-        this.state = { key: 5, open: true }
+        this.state = { key: 2, open: true }
         return this.connect()
     }
 
@@ -28,11 +31,17 @@ class App extends StatefulWidget {
             case 2:
                 return FormPage()
             case 3:
-                return ListPage()
+                return new DialogPage()
             case 4:
                 return GridPage()
             case 5:
                 return LayoutPage()
+            case 6:
+                return AnimationPage()
+            case 7:
+                return new StepperPage()
+            case 8:
+                return BorderPanePage()
             default:
                 break
         }
@@ -80,10 +89,11 @@ class App extends StatefulWidget {
                 toggleNav: () => this.toggleNav()
             }),
             body: Div({
-                style: { padding: SIZE._20px },
+                style: { padding: SIZE._20px , height: '500px'},
                 children: [
                     this.getActivePage(this.state.key)
-                ]
+                ],
+
             })
         })
     }
