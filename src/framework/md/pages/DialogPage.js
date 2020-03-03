@@ -1,12 +1,12 @@
-import Div from "../../core/Div"
-import Dialog from "../../misc/Dialog"
 import { StatefulWidget } from "../../tikiti/index"
-import Card from "../../ui/Card"
 import Button from "../Button/Button"
 import ButtonTypes from "../Button/ButtonTypes"
 import Loader from "../../widgets/Loader/index"
 import Row, { RowAlignment } from "../../layouts/Row"
 import AlertBox from "../../widgets/AlertBox/index"
+import Card from "../../widgets/Card/index"
+import Dialog from "../../widgets/Dialog/index"
+import Size from "../../utils/Size"
 
 class DialogPage extends StatefulWidget {
     constructor() {
@@ -17,6 +17,9 @@ class DialogPage extends StatefulWidget {
 
     render() {
         return Card({
+            style:{
+                padding: Size._20px
+            },
             children: [
                 Row({
                     align: RowAlignment.SpaceEvenly,

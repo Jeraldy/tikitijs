@@ -5,11 +5,11 @@ import Center from "./Center"
 import TextView from "../core/TextView"
 import Colors from "../utils/Colors"
 import Column from "./Column"
-import Card from "../ui/Card"
 import H5 from "../core/H5"
 import Button from "../md/Button/Button"
 import ButtonTypes from "../md/Button/ButtonTypes"
 import Divider from "../ui/Divider"
+import Card from "../widgets/Card/index"
 
 export default ({ child, activeStep, callBack, steps }:
     {
@@ -19,17 +19,13 @@ export default ({ child, activeStep, callBack, steps }:
         steps: Array<string>
     }) => {
 
-    return Div({
+    return Card({
         children: [
             Column({
                 children: [
-                    Card({
-                        children: [
-                            Row({
-                                children: steps.map((title, index) => Step(title, index + 1, activeStep, callBack)),
-                                align: RowAlignment.SpaceEvenly
-                            }),
-                        ]
+                    Row({
+                        children: steps.map((title, index) => Step(title, index + 1, activeStep, callBack)),
+                        align: RowAlignment.SpaceEvenly
                     }),
                     Div({ children: [child] }),
                     Divider(),
@@ -48,16 +44,13 @@ export default ({ child, activeStep, callBack, steps }:
                                     })
                                 ]
                             })
-                        ],
-                        style: {
-                            padding: Size._8px
-                        }
+                        ]
                     })
                 ]
             })
         ],
-        style: {
-            border: '1px solid #ccc'
+        style:{
+            padding: Size._8px
         }
     })
 }

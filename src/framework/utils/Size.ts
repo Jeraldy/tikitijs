@@ -1,4 +1,8 @@
 enum Size {
+    _max_content = 'max-content',
+    _auto = 'auto',
+    _100vh = '100vh',
+    _100P = '100%',
     _0px = '0px',
     _1px = '1px',
     _2px = '2px',

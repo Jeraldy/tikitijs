@@ -1,7 +1,6 @@
 import Div from "../../core/Div";
 import './style.css';
 import Size from "../../utils/Size";
-import Colors from "../../utils/Colors";
 
 export default ({ radius = Size._50px, thickness = Size._5px, color = '#FF6600' }:
     { radius?: string, thickness?: string, color?: string } = {}) => {

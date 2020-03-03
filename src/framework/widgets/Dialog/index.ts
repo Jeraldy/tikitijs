@@ -1,15 +1,13 @@
-import Div from "../core/Div"
-import Span from "../core/Span"
-import TextView from "../core/TextView"
-import Paragraph from "../core/Paragraph"
 import './style.css';
-import Size from "../utils/Size"
-import Icon from "../ui/Icon"
-import Row, { RowAlignment } from "../layouts/Row"
-import Button from "../md/Button/Button"
-import ButtonTypes from "../md/Button/ButtonTypes"
-import Hr from "../core/Hr"
-import ActionItem from "../md/AppBars/ActionItem";
+import Div from '../../core/Div';
+import Row, { RowAlignment } from '../../layouts/Row';
+import Size from '../../utils/Size';
+import TextView from '../../core/TextView';
+import ActionItem from '../AppBars/ActionItem';
+import Paragraph from '../../core/Paragraph';
+import Hr from '../../core/Hr';
+import Button from '../Button/Button';
+import ButtonType from '../Button/ButtonTypes';
 
 export default ({ open = false, title}: { open?: boolean,title: string }) => {
     const modal = Div({
@@ -81,7 +79,7 @@ export default ({ open = false, title}: { open?: boolean,title: string }) => {
                                         align: RowAlignment.End,
                                         children: [
                                             Button({
-                                                type: ButtonTypes.OUTLINED, label: 'OKEY',
+                                                type: ButtonType.OUTLINED, label: 'OKEY',
                                             })
                                         ]
                                     })

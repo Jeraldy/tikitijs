@@ -6,7 +6,6 @@ import Div from "../core/Div";
 import DrawerHeader, { DrawerHeaderSubTitle } from "./Drawer/DrawerHeader";
 import Image from "../core/Image";
 import SIZE from "../utils/Size";
-import TablePage from "../../TablePage";
 import FormPage from "./pages/FormPage";
 import SideMenu from "./pages/SideMenu";
 import ToolBar from "./pages/ToolBar";
@@ -16,18 +15,50 @@ import AnimationPage from "./pages/AnimationPage";
 import StepperPage from "./pages/StepperPage";
 import BorderPanePage from "./pages/BorderPanePage";
 import DialogPage from "./pages/DialogPage";
+import Colors from "../utils/Colors";
+import Size from "../utils/Size";
+import Table from "../widgets/Table/index";
 
 class App extends StatefulWidget {
     constructor() {
         super()
-        this.state = { key: 2, open: true }
+        this.state = {
+            key: 2,
+            open: true,
+            data: [
+                [1, 'Jeraldy Deus', 'Something', 'qweq', 'eqweqw', '53484'],
+                [2, 'Jeraldy James', 'Something', 'qweq', 'eqweqw', '53484'],
+                [3, 'Jeraldy Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
+                [4, 'Jeraldy1 Said', 'Something', 'qweq', 'eqweqw', '53484'],
+                [5, 'Jeraldy2 Deus', 'Something', 'qweq', 'eqweqw', '53484'],
+                [6, 'Jeraldy3 James', 'Something', 'qweq', 'eqweqw', '53484'],
+                [7, 'Jeraldy4 Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
+                [8, 'Jeraldy5 Said', 'Something', 'qweq', 'eqweqw', '53484'],
+                [9, 'Jeraldy6 Deus', 'Something', 'qweq', 'eqweqw', '53484'],
+                [10, 'Jeraldy7 James', 'Something', 'qweq', 'eqweqw', '53484'],
+                [11, 'Jeraldy8 Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
+                [12, 'Jeraldy9 Said', 'Something', 'qweq', 'eqweqw', '1000']
+            ]
+        }
         return this.connect()
     }
+
+
 
     getActivePage(key) {
         switch (key) {
             case 1:
-                return new TablePage()
+                return Table({
+                    titles: [
+                        { title: '#', style: { width: SIZE._10px } },
+                        { title: 'Name' },
+                        { title: 'Username' },
+                        { title: 'Website' },
+                        { title: 'Phone' },
+                        { title: 'Email' },
+                    ],
+                    data: this.state.data
+                })
             case 2:
                 return FormPage()
             case 3:
@@ -75,7 +106,7 @@ class App extends StatefulWidget {
                 open: this.state.open,
                 header: DrawerHeader({
                     children: [
-                        this.avator(),
+                        //this.avator(),
                         DrawerHeaderSubTitle("deusjeraldy@gmail.com")
                     ]
                 }),
@@ -89,7 +120,12 @@ class App extends StatefulWidget {
                 toggleNav: () => this.toggleNav()
             }),
             body: Div({
-                style: { padding: SIZE._20px , height: '500px'},
+                style: {
+                    padding: SIZE._20px,
+                    paddingTop: SIZE._60px,
+                    height: Size._100vh,
+                    backgroundColor: Colors.body
+                },
                 children: [
                     this.getActivePage(this.state.key)
                 ],

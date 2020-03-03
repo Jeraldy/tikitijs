@@ -1,43 +1,75 @@
-import Card from "../../ui/Card"
 import Button from "../Button/Button"
 import ButtonTypes from "../Button/ButtonTypes"
-import _Button from '../../ui/Button';
-import Div from "../../core/Div";
-import _TextField from "../../ui/TextField";
 import Row, { RowAlignment } from "../../layouts/Row";
+import CheckBox from "../../widgets/CheckBox/index";
 import DatePicker from "../../widgets/DatePicker/index";
+import Card from "../../widgets/Card/index";
+import Divider from "../../widgets/Divider/index";
+import Size from "../../utils/Size";
+import DropDown from "../../widgets/DropDown/index";
+import DropDownItem from "../../widgets/DropDown/DropDownItem";
+import FileField from "../../widgets/FileField/index";
+import RadioButton from "../../widgets/RadioButton/index";
+import SearchField from "../../widgets/SearchField/index";
+import Loader from "../../widgets/Loader/index";
+import TextField from "../../widgets/TextField/index";
+import Text from '../../widgets/Text/Index';
+import Colors from "../../utils/Colors";
+import TextArea from "../../widgets/TextArea/index";
 
 export default () => {
-    return Div({
+    return Card({
+        style: { padding: Size._20px },
         children: [
-            Card({
-                style: {
-                    display: 'flex',
-                    flexGrow: 'row',
-                    justifyContent: 'space-between',
-                    padding: '20px'
-                },
+            Row({
+                align: RowAlignment.SpaceEvenly,
                 children: [
                     Button({ type: ButtonTypes.FLAT, label: 'FLAT' }),
                     Button({ type: ButtonTypes.RAISED, label: 'RAISED' }),
                     Button({ type: ButtonTypes.OUTLINED, label: 'OUTLINED' }),
                     Button({ type: ButtonTypes.UNELEVETED, label: 'UNELEVETED' }),
-                    _Button({ label: 'DEFAULT' }),
+                    //_Button({ label: 'DEFAULT' }),
 
                 ]
             }),
-            Card({
-                style: { padding: '20px' },
+            Divider(),
+            Row({
+                align: RowAlignment.SpaceEvenly,
                 children: [
-                    Row({
-                        align: RowAlignment.SpaceEvenly,
+                    TextField({ placeholder: 'default', style: { height: '20px' } }),
+                    DropDown({
                         children: [
-                            _TextField({ placeholder: 'default', style: { height: '20px' } }),
-                            Button({ type: ButtonTypes.FLAT, label: 'FLAT' }),
+                            DropDownItem({ text: 'Male', value: 'M' }),
+                            DropDownItem({ text: 'Female', value: 'F' }),
                         ]
                     }),
+                    CheckBox(),
+                    DatePicker()
                 ]
-            })
+            }),
+            Divider(),
+            Row({
+                align: RowAlignment.SpaceEvenly,
+                children: [
+                    FileField(),
+                    RadioButton(),
+                    SearchField(),
+                    Loader()
+                ]
+            }),
+            Divider(),
+            Row({
+                align: RowAlignment.SpaceEvenly,
+                children: [
+                    Text("Text label", {
+                        color: Colors.dark_red,
+                        fontWeight: 'bold'
+                    }),
+                    RadioButton(),
+                    SearchField(),
+                    TextArea()
+                ]
+            }),
         ]
     })
 }

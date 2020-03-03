@@ -1,7 +1,6 @@
 import Div from "../../core/Div"
 import TextView from "../../core/TextView"
 import Size from "../../utils/Size"
-import Animate from "../../animation/Animate"
 import Button from "../../core/Button";
 import './style.css';
 

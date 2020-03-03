@@ -12,11 +12,11 @@ export default (props)=>{
             Actions({
                 align: Alignment.START,
                 items: [
-                    // ActionItem({
-                    //     icon: 'menu',
-                    //     onclick: () => props.toggleNav()
-                    // }),
-                    AppBarTitle("San Francisco, CA")
+                    ActionItem({
+                        icon: 'menu',
+                        onclick: () => props.toggleNav()
+                    }),
+                    AppBarTitle("")
                 ]
             }),
             Actions({

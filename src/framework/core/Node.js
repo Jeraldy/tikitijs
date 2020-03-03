@@ -1,3 +1,5 @@
+import { genId } from "../ui/utils";
+
 export default (props = {}, tag) => {
     var node = document.createElement(tag);
     
@@ -32,7 +34,7 @@ export default (props = {}, tag) => {
         }
     }
     if(!props.id){
-        node.setAttribute("id", Math.random().toString(36))
+        node.setAttribute("id", genId(10))
     }
     return node;
 }
