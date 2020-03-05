@@ -1,6 +1,6 @@
 import { StatefulWidget } from "../../tikiti/index"
-import Button from "../Button/Button"
-import ButtonTypes from "../Button/ButtonTypes"
+import Button from "../../widgets/Button/Button"
+import ButtonTypes from "../../widgets/Button/ButtonTypes"
 import Loader from "../../widgets/Loader/index"
 import Row, { RowAlignment } from "../../layouts/Row"
 import AlertBox from "../../widgets/AlertBox/index"

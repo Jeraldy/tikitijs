@@ -19,28 +19,32 @@ export class StatefulWidget implements LifeCycleMethods {
     }
 
     private node: any;
+    private cordinates: any;
     readonly props: any[];
     state: any
-    
+
     constructor(props?: any) {
         this.props = props
+        this.cordinates = null;
         this.componentMounted()
     }
 
-    async setState(NewState: {}, render?: any) {
+    async setState(NewState: {}, e?: Event) {
         this.componetWillUpdate()
         this.state = { ...this.state, ...NewState }
-        var x = this.node
-        var y = this.render()
-        await reconcile(x, y);
-       // this.runTest(x, y)
+        //await reconcile(this.node, this.render());
+        this.cordinates = e ? this.getCordinates(e) : null;
+        let x = this.render()
+        this.node.parentNode.replaceChild(x, this.node)
+        this.node = x
+        activateTarget(this.cordinates)
         this.componentDidUpdate()
         return this.state
     }
 
     private componentMounted() {
         document
-            .addEventListener("DOMContentLoaded",(_) => this.componentDidMount());
+            .addEventListener("DOMContentLoaded", (_) => this.componentDidMount());
     }
 
     connect() {
@@ -48,24 +52,37 @@ export class StatefulWidget implements LifeCycleMethods {
         return this.node
     }
 
-    runTest(x: any, y: any) {
+    private getCordinates(e: Event) {
         //@ts-ignore
-        console.log(x.innerHTML.length == y.innerHTML.length)
-        if(x.innerHTML.length != y.innerHTML.length){
-            x.parent
-        }
+        let rect = e.target.getBoundingClientRect()
+        return { x: rect.x, y: rect.y }
     }
 
-    static Init = class {
-        constructor(entryNode: any) {
-            document.body.appendChild(entryNode)
-        }
-    }
 }
 
 export const Tikiti = {
     Init(entryNode: any) {
         document.body.appendChild(entryNode)
+    }
+}
+//00s7
+function activateTarget(cordinates: any) {
+    if (cordinates) {
+        //@ts-ignore
+        var target = document.elementFromPoint(cordinates.x, cordinates.y);
+        if (target.childNodes) {
+            target.childNodes.forEach((el) => {
+                if (el.nodeName == 'INPUT') {
+                    //@ts-ignore
+                    el.focus()
+                    //@ts-ignore
+                    el.selectionStart = el.selectionEnd = el.value.length;
+                }
+            })
+        } else {
+            //@ts-ignore
+            target.focus()
+        }
     }
 }
 

@@ -1,7 +1,6 @@
-import DrawerAction from "../Drawer/Actions";
-import DrawerActionItem, { DrawerActionDivider } from "../Drawer/ActionItem";
+import DrawerAction from '../../widgets/Drawer/Actions';
+import DrawerActionItem, { DrawerActionDivider } from "../../widgets/Drawer/ActionItem";
 import Icons from "../../utils/Icons";
-import SideMenu from "../../widgets/SideMenu/index";
 
 export default ({ key, goToPage }) => {
     return DrawerAction({

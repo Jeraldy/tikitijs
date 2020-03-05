@@ -19,10 +19,9 @@ enum rowAlignment {
 type rAlign = rowAlignment.Start | rowAlignment.End | rowAlignment.Center
     | rowAlignment.SpaceBetween | rowAlignment.SpaceEvenly
 
-export default ({ children, align, ...props }:
-    { children: Array<any>, align?: rAlign, props?: any }) => {
-
-    return Div({ children, style: style(align), ...props })
+export default ({ children, align, id }:
+    { children: Array<any>, align?: rAlign, id?: any }) => {
+    return Div({ children, style: style(align), id })
 }
 
 export const RowAlignment = rowAlignment;

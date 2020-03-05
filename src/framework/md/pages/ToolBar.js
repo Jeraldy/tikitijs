@@ -1,9 +1,9 @@
-import AppBar from "../AppBars/AppBar"
-import Actions from "../AppBars/Actions"
-import ActionItem from "../AppBars/ActionItem"
-import AppBarTitle from "../AppBars/AppBarTitle"
-import BarType from "../AppBars/AppBarType"
-import Alignment from "../AppBars/ActionAlignment"
+import AppBar from "../../widgets/AppBars/AppBar";
+import Actions from "../../widgets/AppBars/Actions";
+import ActionItem from "../../widgets/Button/ActionButton";
+import AppBarTitle from "../../widgets/AppBars/AppBarTitle";
+import BarType from "../../widgets/AppBars/AppBarType";
+import Alignment from "../../widgets/AppBars/ActionAlignment";
 
 export default (props)=>{
     return  AppBar({

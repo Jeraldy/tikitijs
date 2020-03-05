@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tikiti_1 = require("./tikiti");
+exports.StatefulWidget = tikiti_1.StatefulWidget;
+exports.Tikiti = tikiti_1.Tikiti;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtQ0FHa0I7QUFGaEIsa0NBQUEsY0FBYyxDQUFBO0FBQ2QsMEJBQUEsTUFBTSxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHtcclxuICBTdGF0ZWZ1bFdpZGdldCxcclxuICBUaWtpdGksXHJcbn0gZnJvbSAnLi90aWtpdGknO1xyXG5cclxuIl19

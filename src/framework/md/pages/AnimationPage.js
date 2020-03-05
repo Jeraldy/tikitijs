@@ -3,11 +3,10 @@ import Div from '../../core/Div';
 import Size from '../../utils/Size';
 import Colors from '../../utils/Colors';
 import TextView from '../../core/TextView';
-import Card from '../../ui/Card';
+import Card from '../../widgets/Card';
 import Row, { RowAlignment } from '../../layouts/Row';
 import Divider from '../../ui/Divider';
 import Animate from '../../animation/Animate';
-import Stepper from '../../layouts/Stepper';
 
 export default () => {
 

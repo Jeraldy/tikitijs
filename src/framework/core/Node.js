@@ -1,8 +1,8 @@
 import { genId } from "../ui/utils";
-
+let x = 0
 export default (props = {}, tag) => {
     var node = document.createElement(tag);
-    
+
     if (props.children) {
         props.children.forEach(child => {
             if (child !== null) {
@@ -21,7 +21,7 @@ export default (props = {}, tag) => {
         props.style = style
     }
 
- 
+
 
     for (var key of Object.keys(props)) {
         if (typeof props[key] === 'function') {
@@ -33,8 +33,10 @@ export default (props = {}, tag) => {
             node.setAttribute(key, props[key]);
         }
     }
-    if(!props.id){
-        node.setAttribute("id", genId(10))
+    if (!props.id && tag == "input") {
+        // x += 1
+        // console.log(x)
+        //node.setAttribute("id", genId(10))
     }
     return node;
 }

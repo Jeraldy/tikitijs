@@ -2,11 +2,12 @@ import Header from "../../core/Header"
 import H1 from "../../core/H1"
 import TextView from "../../core/TextView"
 import Span from "../../core/Span"
-import ActionItem from "../../md/AppBars/ActionItem"
 import Search from "./Search"
 import Row from "../../layouts/Row"
 
 export default (props: any) => {
+    const actions = props.actions
+    delete props.actions
     return Header({
         class: "main-table-header",
         children: [
@@ -22,8 +23,7 @@ export default (props: any) => {
                     Row({
                         children: [
                             Search(props),
-                            ActionItem({ icon: "add" }),
-                            ActionItem({ icon: "more_vert" }),
+                            ...actions
                         ]
                     })
                 ]

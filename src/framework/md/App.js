@@ -1,9 +1,9 @@
 import { StatefulWidget } from "../tikiti/index";
-import Drawer, { toggleDrawer } from "./Drawer/Drawer";
-import DrawerType from "./Drawer/DrawerTypes";
+import Drawer, { toggleDrawer } from '../widgets/Drawer/Drawer';
+import DrawerType from "../widgets/Drawer/DrawerTypes";
 import Scaffold from "./Scaffold/Scaffold";
 import Div from "../core/Div";
-import DrawerHeader, { DrawerHeaderSubTitle } from "./Drawer/DrawerHeader";
+import DrawerHeader, { DrawerHeaderSubTitle } from "../widgets/Drawer/DrawerHeader";
 import Image from "../core/Image";
 import SIZE from "../utils/Size";
 import FormPage from "./pages/FormPage";
@@ -18,6 +18,8 @@ import DialogPage from "./pages/DialogPage";
 import Colors from "../utils/Colors";
 import Size from "../utils/Size";
 import Table from "../widgets/Table/index";
+import TextField from "../widgets/TextField/index";
+import ActionItem from "../widgets/AppBars/ActionItem";
 
 class App extends StatefulWidget {
     constructor() {
@@ -57,7 +59,11 @@ class App extends StatefulWidget {
                         { title: 'Phone' },
                         { title: 'Email' },
                     ],
-                    data: this.state.data
+                    data: this.state.data,
+                    actions: [
+                        ActionItem({ icon: "add" }),
+                        ActionItem({ icon: "more_vert" }),
+                    ]
                 })
             case 2:
                 return FormPage()

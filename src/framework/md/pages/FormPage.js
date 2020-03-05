@@ -1,5 +1,3 @@
-import Button from "../Button/Button"
-import ButtonTypes from "../Button/ButtonTypes"
 import Row, { RowAlignment } from "../../layouts/Row";
 import CheckBox from "../../widgets/CheckBox/index";
 import DatePicker from "../../widgets/DatePicker/index";
@@ -16,6 +14,8 @@ import TextField from "../../widgets/TextField/index";
 import Text from '../../widgets/Text/Index';
 import Colors from "../../utils/Colors";
 import TextArea from "../../widgets/TextArea/index";
+import Button from "../../widgets/Button/Button";
+import ButtonType from "../../widgets/Button/ButtonTypes";
 
 export default () => {
     return Card({
@@ -24,10 +24,10 @@ export default () => {
             Row({
                 align: RowAlignment.SpaceEvenly,
                 children: [
-                    Button({ type: ButtonTypes.FLAT, label: 'FLAT' }),
-                    Button({ type: ButtonTypes.RAISED, label: 'RAISED' }),
-                    Button({ type: ButtonTypes.OUTLINED, label: 'OUTLINED' }),
-                    Button({ type: ButtonTypes.UNELEVETED, label: 'UNELEVETED' }),
+                    Button({ type: ButtonType.FLAT, label: 'FLAT' }),
+                    Button({ type: ButtonType.RAISED, label: 'RAISED' }),
+                    Button({ type: ButtonType.OUTLINED, label: 'OUTLINED' }),
+                    Button({ type: ButtonType.UNELEVETED, label: 'UNELEVETED' }),
                     //_Button({ label: 'DEFAULT' }),
 
                 ]

@@ -6,10 +6,10 @@ import TextView from "../core/TextView"
 import Colors from "../utils/Colors"
 import Column from "./Column"
 import H5 from "../core/H5"
-import Button from "../md/Button/Button"
-import ButtonTypes from "../md/Button/ButtonTypes"
 import Divider from "../ui/Divider"
 import Card from "../widgets/Card/index"
+import Button from "../widgets/Button/Button"
+import ButtonType from "../widgets/Button/ButtonTypes"
 
 export default ({ child, activeStep, callBack, steps }:
     {
@@ -35,11 +35,11 @@ export default ({ child, activeStep, callBack, steps }:
                                 align: RowAlignment.SpaceBetween,
                                 children: [
                                     Button({
-                                        type: ButtonTypes.OUTLINED, label: 'PREV',
+                                        type: ButtonType.OUTLINED, label: 'PREV',
                                         onclick: () => activeStep == 1 ? null : callBack(activeStep - 1)
                                     }),
                                     Button({
-                                        type: ButtonTypes.RAISED, label: 'NEXT',
+                                        type: ButtonType.RAISED, label: 'NEXT',
                                         onclick: () => activeStep == steps.length ? null : callBack(activeStep + 1)
                                     })
                                 ]
