@@ -9,13 +9,16 @@ let currentState: boolean = true;
 export default ({ type, action, header, open }: { type: drawerType, action: any, header: any, open: boolean }) => {
 
     // if (document.getElementById("aside-menu")) {
-    //     if(currentState != open){
-    //         setTimeout(() => _toggleDrawer(open), 1)
-    //     }
-    //     currentState = open
+    //     // if(currentState != open){
+    //     //     setTimeout(() => _toggleDrawer(open), 1)
+    //     // }
+    //     // currentState = open
+    //      setTimeout(() => _toggleDrawer(open), 10)
     // } else {
+    //     currentState = open;
     //     initDrawer(open)
     // }
+    //initDrawer(true)
 
     return Aside({
         id: 'aside-menu',
@@ -42,14 +45,19 @@ function initDrawer(open: boolean) {
 }
 
 function _toggleDrawer(open: boolean) {
-   // console.log("Requested State = ",open)
-   // console.log("Is Drawer Open = ",drawer.open)
-    if(drawer.open != open){
+    drawer = MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+    //drawer.open = currentState;
+    console.log(`drawer.open = ${drawer.open} open = ${open}`)
+    if (drawer.open != open) {
         drawer.open = open;
+        currentState = open
     }
+    //drawer.open = !drawer.open;
+    // console.log("_toggleDrawer = "+drawer.open)
 }
 
 
 export const toggleDrawer = () => {
     drawer.open = !drawer.open;
+    console.log(drawer.open)
 }

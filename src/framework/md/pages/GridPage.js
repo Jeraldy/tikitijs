@@ -1,12 +1,12 @@
 import Div from "../../core/Div"
 import TextView from "../../core/TextView"
-import GridContainer from "../grid/GridContainer"
-import Grid from "../grid/Grid"
-import GridCell from "../grid/GridCell"
-import Card from "../../ui/Card"
-import TextField from "../../ui/TextField";
+import GridContainer from "../../widgets/Grid/GridContainer"
+import Grid from "../../widgets/Grid"
+import GridCell from "../../widgets/Grid/GridCell"
 import Size from "../../utils/Size"
 import Hr from "../../core/Hr"
+import TextField from "../../widgets/TextField"
+import Card from "../../widgets/Card"
 
 export default () => {
     return Card({
@@ -14,7 +14,7 @@ export default () => {
             GridContainer({
                 grid: Grid({
                     cells: [
-                        GridCell({ children: [DummyCard('CELL 1')] }),
+                        GridCell({ children: [DummyCard('CELL 1'),DummyCard('CELL x')] }),
                         GridCell({ children: [DummyCard('CELL 2')] }),
                         GridCell({ children: [DummyCard('CELL 3')] }),
                         GridCell({ children: [DummyCard('CELL 4')] }),
@@ -38,7 +38,7 @@ function DummyCard(name) {
             paddingRight: Size._18px
         },
         children: [
-            TextView('First Name: '),
+            TextView(name),
             TextField({
                 style: {
                     height: Size._20px,

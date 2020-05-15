@@ -12,10 +12,10 @@ export default (props)=>{
             Actions({
                 align: Alignment.START,
                 items: [
-                    ActionItem({
-                        icon: 'menu',
-                        onclick: () => props.toggleNav()
-                    }),
+                    // ActionItem({
+                    //     icon: 'menu',
+                    //     onclick: () => props.toggleNav()
+                    // }),
                     AppBarTitle("")
                 ]
             }),

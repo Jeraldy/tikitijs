@@ -37,15 +37,16 @@ function MenuItem(title: string) {
                 el.style.height = '0px';
             }
         }
-
-        if (content.style.visibility == 'visible') {
-            content.style.visibility = 'hidden';
-            content.style.opacity = '0';
-            content.style.height = '0px';
+        //@ts-ignore
+        let cstyle = content.style
+        if (cstyle.visibility == 'visible') {
+            cstyle.visibility = 'hidden';
+            cstyle.opacity = '0';
+            cstyle.height = '0px';
         } else {
-            content.style.visibility = 'visible';
-            content.style.opacity = '1';
-            content.style.height = Size._100px;
+            cstyle.visibility = 'visible';
+            cstyle.opacity = '1';
+            cstyle.height = Size._100px;
         }
     });
 

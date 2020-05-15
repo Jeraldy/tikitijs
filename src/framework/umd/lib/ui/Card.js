@@ -1,9 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Div_1 = require("../core/Div");
-exports.default = (props) => {
-    let style = Object.assign({}, (props.style || {}));
-    delete props.style;
-    return Div_1.default(Object.assign({ style: Object.assign({ overflowX: 'auto', border: '1px solid #ccc', padding: '5px', borderRadius: '2px', boxShadow: '-3px 3px 3px -3px rgba(0,0,0,.5)', backgroundColor: 'white' }, style) }, props));
-};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2FyZC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91aS9DYXJkLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEscUNBQThCO0FBRTlCLGtCQUFlLENBQUMsS0FBVSxFQUFFLEVBQUU7SUFDNUIsSUFBSSxLQUFLLHFCQUFRLENBQUMsS0FBSyxDQUFDLEtBQUssSUFBSSxFQUFFLENBQUMsQ0FBRSxDQUFDO0lBQ3ZDLE9BQU8sS0FBSyxDQUFDLEtBQUssQ0FBQztJQUNuQixPQUFPLGFBQUcsaUJBQ1IsS0FBSyxrQkFDSCxTQUFTLEVBQUUsTUFBTSxFQUNqQixNQUFNLEVBQUUsZ0JBQWdCLEVBQ3hCLE9BQU8sRUFBRSxLQUFLLEVBQ2QsWUFBWSxFQUFFLEtBQUssRUFDbkIsU0FBUyxFQUFFLGtDQUFrQyxFQUM3QyxlQUFlLEVBQUUsT0FBTyxJQUNyQixLQUFLLEtBRVAsS0FBSyxFQUNSLENBQUM7QUFDTCxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgRGl2IGZyb20gJy4uL2NvcmUvRGl2JztcclxuXHJcbmV4cG9ydCBkZWZhdWx0IChwcm9wczogYW55KSA9PiB7XHJcbiAgbGV0IHN0eWxlID0geyAuLi4ocHJvcHMuc3R5bGUgfHwge30pIH07XHJcbiAgZGVsZXRlIHByb3BzLnN0eWxlO1xyXG4gIHJldHVybiBEaXYoe1xyXG4gICAgc3R5bGU6IHtcclxuICAgICAgb3ZlcmZsb3dYOiAnYXV0bycsXHJcbiAgICAgIGJvcmRlcjogJzFweCBzb2xpZCAjY2NjJyxcclxuICAgICAgcGFkZGluZzogJzVweCcsXHJcbiAgICAgIGJvcmRlclJhZGl1czogJzJweCcsXHJcbiAgICAgIGJveFNoYWRvdzogJy0zcHggM3B4IDNweCAtM3B4IHJnYmEoMCwwLDAsLjUpJyxcclxuICAgICAgYmFja2dyb3VuZENvbG9yOiAnd2hpdGUnLFxyXG4gICAgICAuLi5zdHlsZSxcclxuICAgIH0sXHJcbiAgICAuLi5wcm9wcyxcclxuICB9KTtcclxufTtcclxuIl19

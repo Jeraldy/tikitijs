@@ -5,7 +5,7 @@ import Colors from '../../utils/Colors';
 import TextView from '../../core/TextView';
 import Card from '../../widgets/Card';
 import Row, { RowAlignment } from '../../layouts/Row';
-import Divider from '../../ui/Divider';
+import Divider from '../../widgets/Divider';
 import Animate from '../../animation/Animate';
 
 export default () => {

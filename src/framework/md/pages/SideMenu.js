@@ -1,6 +1,7 @@
 import DrawerAction from '../../widgets/Drawer/Actions';
 import DrawerActionItem, { DrawerActionDivider } from "../../widgets/Drawer/ActionItem";
 import Icons from "../../utils/Icons";
+import SideMenu from '../../widgets/SideMenu/index';
 
 export default ({ key, goToPage }) => {
     return DrawerAction({
@@ -56,10 +57,10 @@ export default ({ key, goToPage }) => {
                 activated: key == 8,
                 onclick: () => goToPage(8)
             }),
-            // SideMenu({title: 'Home'}),
-            // SideMenu({title: 'Settings'}),
-            // SideMenu({title: 'Home 2'}),
-            // SideMenu({title: 'Settings 3'})
+            // SideMenu({ title: 'Home' }),
+            // SideMenu({ title: 'Settings' }),
+            // SideMenu({ title: 'Home 2' }),
+            // SideMenu({ title: 'Settings 3' })
         ]
     })
 }

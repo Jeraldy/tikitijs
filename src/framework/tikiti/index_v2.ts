@@ -28,7 +28,6 @@ export default class Tikiti {
         this.update = this.context.render()
         this.domTreeUpdate = this.generateDomTree(this.update).tree
         this.updateDom()
-        console.log("Calling...")
         this.componentDidUpdate()
         return this.state
     }

@@ -6,10 +6,11 @@ import TextView from "../core/TextView"
 import Colors from "../utils/Colors"
 import Column from "./Column"
 import H5 from "../core/H5"
-import Divider from "../ui/Divider"
+import Divider from "../widgets/Divider/index"
 import Card from "../widgets/Card/index"
 import Button from "../widgets/Button/Button"
 import ButtonType from "../widgets/Button/ButtonTypes"
+import ActionButton from "../widgets/Button/ActionButton"
 
 export default ({ child, activeStep, callBack, steps }:
     {
@@ -27,6 +28,7 @@ export default ({ child, activeStep, callBack, steps }:
                         children: steps.map((title, index) => Step(title, index + 1, activeStep, callBack)),
                         align: RowAlignment.SpaceEvenly
                     }),
+                    Divider(),
                     Div({ children: [child] }),
                     Divider(),
                     Div({
@@ -34,8 +36,8 @@ export default ({ child, activeStep, callBack, steps }:
                             Row({
                                 align: RowAlignment.SpaceBetween,
                                 children: [
-                                    Button({
-                                        type: ButtonType.OUTLINED, label: 'PREV',
+                                    ActionButton({
+                                        icon:'keyboard_arrow_left',
                                         onclick: () => activeStep == 1 ? null : callBack(activeStep - 1)
                                     }),
                                     Button({
@@ -49,7 +51,7 @@ export default ({ child, activeStep, callBack, steps }:
                 ]
             })
         ],
-        style:{
+        style: {
             padding: Size._8px
         }
     })
@@ -79,9 +81,7 @@ function Step(title: string, index: number, activeStep: number, callBack: (activ
             }),
             Div({
                 children: [
-                    H5({
-                        children: [TextView(title)],
-                    })
+                    H5({ children: [TextView(title)], })
                 ],
                 style: {
                     color: activeStep == index ? Colors.black : '#ccc',

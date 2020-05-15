@@ -1,7 +1,6 @@
 import { StatefulWidget } from "../tikiti/index";
-import Drawer, { toggleDrawer } from '../widgets/Drawer/Drawer';
-import DrawerType from "../widgets/Drawer/DrawerTypes";
-import Scaffold from "./Scaffold/Scaffold";
+import Drawer from '../widgets/Drawer/Drawer';
+import Scaffold from "../widgets/Scaffold";
 import Div from "../core/Div";
 import DrawerHeader, { DrawerHeaderSubTitle } from "../widgets/Drawer/DrawerHeader";
 import Image from "../core/Image";
@@ -18,39 +17,86 @@ import DialogPage from "./pages/DialogPage";
 import Colors from "../utils/Colors";
 import Size from "../utils/Size";
 import Table from "../widgets/Table/index";
-import TextField from "../widgets/TextField/index";
-import ActionItem from "../widgets/AppBars/ActionItem";
+import axios from 'axios';
+import Menu, { toggleMenu } from "../widgets/Menu/Menu";
+import MenuItem from "../widgets/Menu/MenuItem";
+import ActionButton from '../widgets/Button/ActionButton'
 
 class App extends StatefulWidget {
     constructor() {
         super()
         this.state = {
-            key: 2,
+            key: 1,
             open: true,
+            value: '',
+            value1: '',
             data: [
-                [1, 'Jeraldy Deus', 'Something', 'qweq', 'eqweqw', '53484'],
-                [2, 'Jeraldy James', 'Something', 'qweq', 'eqweqw', '53484'],
-                [3, 'Jeraldy Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
-                [4, 'Jeraldy1 Said', 'Something', 'qweq', 'eqweqw', '53484'],
-                [5, 'Jeraldy2 Deus', 'Something', 'qweq', 'eqweqw', '53484'],
-                [6, 'Jeraldy3 James', 'Something', 'qweq', 'eqweqw', '53484'],
-                [7, 'Jeraldy4 Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
-                [8, 'Jeraldy5 Said', 'Something', 'qweq', 'eqweqw', '53484'],
-                [9, 'Jeraldy6 Deus', 'Something', 'qweq', 'eqweqw', '53484'],
-                [10, 'Jeraldy7 James', 'Something', 'qweq', 'eqweqw', '53484'],
-                [11, 'Jeraldy8 Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
-                [12, 'Jeraldy9 Said', 'Something', 'qweq', 'eqweqw', '1000']
+                // [1, 'Jeraldy Deus', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [2, 'Jeraldy James', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [3, 'Jeraldy Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [4, 'Jeraldy1 Said', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [5, 'Jeraldy2 Deus', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [6, 'Jeraldy3 James', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [7, 'Jeraldy4 Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [8, 'Jeraldy5 Said', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [9, 'Jeraldy6 Deus', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [10, 'Jeraldy7 James', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [11, 'Jeraldy8 Khamis', 'Something', 'qweq', 'eqweqw', '53484'],
+                // [12, 'Jeraldy9 Said', 'Something', 'qweq', 'eqweqw', '1000']
             ]
         }
         return this.connect()
     }
 
+    componentDidMount() {
+        this.generateData()
+    }
+
+
+    async generateData() {
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+        var data = []
+        response.data.forEach((row) => {
+            data.push([
+                row.id,
+                row.name,
+                row.username,
+                row.website,
+                row.phone,
+                row.email,
+                this.action(row.id)
+            ])
+        });
+        this.setState({ data })
+    }
+
+    action(id) {
+        return Div({
+            class: 'mdc-menu-surface--anchor',
+            children: [
+                ActionButton({
+                    icon: 'more_vert',
+                    onclick: () => toggleMenu(id),
+                }),
+                Menu({
+                    id,
+                    menuItems: [
+                        MenuItem({ label: 'Details - ' + id }),
+                        MenuItem({ label: 'Edit', }),
+                        MenuItem({ label: 'Remove', }),
+                        MenuItem({ label: 'Item x', })
+                    ]
+                })
+            ],
+        })
+    }
 
 
     getActivePage(key) {
         switch (key) {
             case 1:
                 return Table({
+                    title: 'Customers',
                     titles: [
                         { title: '#', style: { width: SIZE._10px } },
                         { title: 'Name' },
@@ -58,11 +104,12 @@ class App extends StatefulWidget {
                         { title: 'Website' },
                         { title: 'Phone' },
                         { title: 'Email' },
+                        { title: '', style: { width: SIZE._2px }},
                     ],
                     data: this.state.data,
                     actions: [
-                        ActionItem({ icon: "add" }),
-                        ActionItem({ icon: "more_vert" }),
+                        ActionButton({ icon: "add" }),
+                        //ActionButton({ icon: "more_vert" }),
                     ]
                 })
             case 2:
@@ -109,21 +156,21 @@ class App extends StatefulWidget {
     render() {
         return Scaffold({
             drawer: Drawer({
-                open: this.state.open,
+                //open: this.state.open,
                 header: DrawerHeader({
                     children: [
                         //this.avator(),
                         DrawerHeaderSubTitle("deusjeraldy@gmail.com")
                     ]
                 }),
-                type: DrawerType.PERMANENT,
+                // type: DrawerType.DISMISSIBLE,
                 action: SideMenu({
                     goToPage: (key) => this.goToPage(key),
                     key: this.state.key
                 })
             }),
             appBar: ToolBar({
-                toggleNav: () => this.toggleNav()
+                //toggleNav: () => this.toggleNav()
             }),
             body: Div({
                 style: {
@@ -133,9 +180,18 @@ class App extends StatefulWidget {
                     backgroundColor: Colors.body
                 },
                 children: [
+                    // TextField({
+                    //     onkeyup: (e) => this.setState({ value: e.target.value }, 'input1'),
+                    //     value: this.state.value,
+                    //     id: 'input1'
+                    // }),
+                    // TextField({
+                    //     onkeyup: (e) => this.setState({ value1: e.target.value }, 'input2'),
+                    //     value: this.state.value1,
+                    //     id: 'input2'
+                    // }),
                     this.getActivePage(this.state.key)
                 ],
-
             })
         })
     }

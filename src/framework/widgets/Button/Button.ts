@@ -3,6 +3,7 @@ import ButtonTypes from "./ButtonTypes"
 import Div from "../../core/Div"
 import Span from "../../core/Span"
 import TextView from "../../core/TextView"
+import './style.css';
 
 type buttonType = ButtonTypes.FLAT | ButtonTypes.OUTLINED
     | ButtonTypes.RAISED | ButtonTypes.UNELEVETED

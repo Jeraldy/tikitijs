@@ -2,8 +2,8 @@ import { StatefulWidget } from "../../tikiti/index";
 import Colors from "../../utils/Colors";
 import Size from "../../utils/Size";
 import Stepper from "../../layouts/Stepper";
-import TextView from "../../core/TextView";
-import Div from "../../core/Div";
+import TextView from "../../core1/TextView";
+import Div from "../../core1/Div";
 import Center from "../../layouts/Center";
 
 class StepperPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class StepperPage extends StatefulWidget {
         return Div({
             style: {
                 height: Size._200px,
-                backgroundColor: Colors.floral_white,
+                //backgroundColor: Colors.floral_white,
             },
             children: [
                 Center({

@@ -69,7 +69,7 @@ export default ({ open = false, title}: { open?: boolean,title: string }) => {
                                     })
                                 ]
                             }),
-                            Hr(),
+                            Hr({}),
                             Div({
                                 style: {
                                     padding: Size._8px

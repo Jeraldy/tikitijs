@@ -38,9 +38,9 @@ export default (props: any) => {
                     })
                 ],
                 style: {
-                    position: 'absolute',
-                    left: '-11px',
-                    top: Size._12px
+                    position: 'relative',
+                    right: '55px',
+                    top: '-3px'
                 }
             })
         ]

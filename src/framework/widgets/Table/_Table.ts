@@ -13,14 +13,12 @@ import Footer from "../../core/Footer";
 import Span from "../../core/Span";
 import ActionItem from "../AppBars/ActionItem";
 
-enum DIMS {
-    SIZE = 10
-}
+enum DIMS { SIZE = 10 }
 
 class _Table extends StatefulWidget {
     constructor(props: any) {
         super(props)
-        this.state = { ...this.props, query: '', start: 0 }
+        this.state = { ...this.props, query: '', start: 0, end: DIMS.SIZE }
         this.filterTable = this.filterTable.bind(this)
         return this.connect()
     }
@@ -45,31 +43,32 @@ class _Table extends StatefulWidget {
 
     nextData() {
         let start = this.state.start + DIMS.SIZE
-        let end = start + DIMS.SIZE
+        let end = this.state.end + DIMS.SIZE
         let data = this.state.data.slice(start, end)
         if (data.length > 0) {
-            this.setState({ start })
+            this.setState({ start, end })
         }
     }
 
     prevData() {
         let start = this.state.start - DIMS.SIZE
-        let end = start - DIMS.SIZE
+        let end = this.state.end - DIMS.SIZE
         let data = this.state.data.slice(start, end)
         if (data.length > 0) {
-            this.setState({ start })
+            this.setState({ start, end })
         }
     }
 
     render() {
-        const data = this.state.data.slice(this.state.start, this.state.start + DIMS.SIZE);
+        const data = this.state.data.slice(this.state.start, this.state.end);
         return Section({
             class: "md-ui component-data-table",
             children: [
                 TableHeader({
                     filter: (e: Event) => this.filterTable(e),
                     query: this.state.query,
-                    actions: [...this.state.actions]
+                    actions: [...this.state.actions],
+                    title: this.state.title
                 }),
                 Divider({ style: { backgroundColor: '#e0e0e0' } }),
                 Div({
@@ -146,8 +145,13 @@ class _Table extends StatefulWidget {
     }
 }
 
-function TD(title: string, style?: any) {
-    return Td({ children: [TextView(title)], style })
+function TD(title: any, style?: any) {
+    return Td({
+        children: [
+            typeof title != 'object' ? TextView(title) : title
+        ],
+        style
+    })
 }
 
 export default _Table;
