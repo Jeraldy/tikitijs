@@ -9,6 +9,7 @@ import ListItem from "./framework/core/ListItem";
 import Size from "./framework/utils/Size";
 import Colors from "./framework/utils/Colors";
 import './index.css';
+import DummyPage from "./dummyPage";
 
 class App extends StatefulWidget {
     constructor() {
@@ -23,16 +24,8 @@ class App extends StatefulWidget {
         return this.connect()
     }
 
-    // componentDidMount() {
-    //     setInterval(() => {
-    //         this.setState({
-    //             counter: this.state.counter + 1
-    //         })
-    //     }, 1000);
-    // }
-
     handleChange(e) {
-        this.setState({ value: e.target.value }, e)
+        this.setState({ value: e.target.value })
     }
 
     addTodo() {
@@ -44,6 +37,12 @@ class App extends StatefulWidget {
         }
     }
 
+    toggleHeight() {
+        this.setState({
+            height: this.state.height == Size._200px ? Size._20px : Size._200px,
+        })
+    }
+
     render() {
         return Div({
             children: [
@@ -52,10 +51,9 @@ class App extends StatefulWidget {
                         TextInput({
                             value: this.state.value,
                             onkeyup: (e) => this.handleChange(e),
-                            id: 'input-id'
                         }),
                         Button({
-                            children: [TextView(" Add Todo")],
+                            children: [TextView("+")],
                             onclick: () => this.addTodo()
                         })
                     ]
@@ -63,27 +61,14 @@ class App extends StatefulWidget {
                 UnorderedList({
                     children: this.state.todos.map((todo) => ListItem({ children: [TextView(todo)] }))
                 }),
-                Button({
-                    children: [TextView("Toggle Width-"+this.state.counter)],
-                    onclick: () => this.setState({
-                        height: this.state.height == Size._200px ? Size._20px : Size._200px,
-                        //class: this.state.class == '' ? 'animate' : ''
-                    })
-                }),
-                Div({
-                    //class: this.state.class,
-                    style: {
-                        width: Size._200px,
-                        height: this.state.height,
-                        backgroundColor: Colors.acid_green,
-                        transition: 'height .3s'
-                    },
-                    children: [
-                        Div({ children: [TextView("Item 1")] }),
-                        Div({ children: [TextView("Item 2")] }),
-                        Div({ children: [TextView("Item 3")] })
-                    ]
-                }),
+                // Button({
+                //     children: [TextView("Toggle Width")],
+                //     onclick: () => this.toggleHeight()
+                // }),
+                DummyPage({
+                    height: this.state.height,
+                    toggleHeight: () => this.toggleHeight()
+                })
             ]
         })
     }

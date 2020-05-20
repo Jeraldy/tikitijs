@@ -1,21 +1,11 @@
-var h = require('virtual-dom/h');
-var diff = require('virtual-dom/diff');
-var patch = require('virtual-dom/patch');
-var createElement = require('virtual-dom/create-element');
-var parser = require('html2hscript');
-
-//@ts-ignore
-var rootNode;
+import { converToHFun, updateElement } from './reconcile';
 
 export const Tikiti = {
     Init(entryNode: any) {
-        parser(entryNode.innerHTML,
-        function (_err: any, newTree: any) {
-            console.log(newTree)
-            rootNode = createElement(h("div", {"style":{"display":"flex","flex-wrap":"wrap","justify-content":"flex-start"}}, [ h("input", {"attributes":{"value":"","type":"text"}}, [ h("button", [ " Add Todo" ]) ]) ]), h("ul"), h("button", [ "Toggle Width-0" ]), h("div", {"style":{"width":"200px","height":"200px","background-color":"#B0BF1A","transition":"height .3s"}}, [ h("div", [ "Item 1" ]), h("div", [ "Item 2" ]), h("div", [ "Item 3" ]) ]));
-            console.log(rootNode)
-            document.body.appendChild(rootNode);
-        });
+        updateElement(
+            document.getElementById("root"),
+            converToHFun(entryNode)
+        )
     }
 }
 
@@ -37,7 +27,6 @@ export class StatefulWidget implements LifeCycleMethods {
     }
 
     private node: any;
-    private _node: any;
     readonly props: any[];
     private update: any;
     private domTree: {}[] = [];
@@ -51,21 +40,15 @@ export class StatefulWidget implements LifeCycleMethods {
     async setState(NewState: {}, e?: Event) {
         this.componetWillUpdate()
         this.state = { ...this.state, ...NewState }
-        let oldTreeH = this.node
-        let _newTree = null
-        //console.log(rootNode)
-        //@ts-ignore
-        parser(this.render().innerHTML,
-            function (_err: any, newTree: any) {
-                var patches = diff(oldTreeH, newTree);
-                //@ts-ignore
-                rootNode = patch(rootNode, patches);
-                console.log(rootNode)
-                //console.log(newTree)
-                _newTree = newTree
-            });
-        this.node = _newTree
-
+        let newNode = this.render()
+        let x = converToHFun(newNode)
+        console.log(x)
+        updateElement(
+            document.getElementById("root"),
+            x,//converToHFun(newNode),
+            converToHFun(this.node)
+        )
+        this.node = newNode
         this.componentDidUpdate()
         return this.state
     }
@@ -155,15 +138,8 @@ export class StatefulWidget implements LifeCycleMethods {
     }
 
     connect() {
-        this._node = this.render()
-        let nodeH = null
-        //@ts-ignore
-        parser(this._node.innerHTML,
-            function (_err: any, hscript: any) {
-                nodeH = hscript
-            });
-        this.node = nodeH
-        return this._node
+        this.node = this.render()
+        return this.node
     }
 
     private initDomTree() {
