@@ -42,7 +42,7 @@
     "bourbon": "^7.0.0",
     "codyhouse-framework": "^2.3.3",
     "csstype": "^2.6.10",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.20",
     "flatpickr": "^4.6.3",
     "html2hscript": "^2.0.1",
